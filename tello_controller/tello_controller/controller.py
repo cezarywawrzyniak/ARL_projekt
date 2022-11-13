@@ -59,7 +59,19 @@ class ControllerNode(Node):
             self.state = self.next_state
             self.next_state = self.TelloState.NONE
 
-    def taking_off_func(self):
+    def get_markers(self, msg):
+        self.marker_list = msg.marker_ids
+        self.poses_list = msg.poses 
+        # print("DEJ MARKER")
+        if 0 in self.marker_list:
+            id = self.marker_list.index(0)
+            self.pose = self.poses_list[id]
+            # print(self.pose.position)
+        
+        if self.state == self.TelloState.HOVERING and not self.action_done:
+            self.mission_func()
+
+    def take_off(self):
         # start drona
         while not self.tello_service_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
@@ -67,9 +79,19 @@ class ControllerNode(Node):
         self.service_request.cmd = 'takeoff'
         self.tello_service_client.call_async(self.service_request)
         time.sleep(3)
-        self.state = self.TelloState.HOVERING   
+        self.state = self.TelloState.HOVERING
 
-    def mission_func(self):
+    def land(self):
+        self.state = self.TelloState.LANDING
+
+        # ladowanie drona
+        while not self.tello_service_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
+
+        self.service_request.cmd = 'land'
+        self.tello_service_client.call_async(self.service_request)   
+
+    def fly_mission(self):
         while not self.tello_service_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
 
@@ -113,32 +135,7 @@ class ControllerNode(Node):
             # landing_func()
 
 
-    def landing_func(self):
-        self.state = self.TelloState.LANDING
-
-        # ladowanie drona
-        while not self.tello_service_client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
-
-        self.service_request.cmd = 'land'
-        self.tello_service_client.call_async(self.service_request)
-
-    def get_markers(self, msg):
-        self.marker_list = msg.marker_ids
-        self.poses_list = msg.poses 
-        # print("DEJ MARKER")
-        if 0 in self.marker_list:
-            id = self.marker_list.index(0)
-            self.pose = self.poses_list[id]
-            # print(self.pose.position)
         
-        if self.state == self.TelloState.HOVERING and not self.action_done:
-            self.mission_func()
-        
-            
-            
-
-
 def main(args=None):
     rclpy.init()
 
