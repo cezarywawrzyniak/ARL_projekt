@@ -1,6 +1,8 @@
 from tello_msgs.srv import TelloAction
 from tello_msgs.msg import TelloResponse
 from tello_interface.srv import TelloState
+from ros2_aruco_interfaces.msg import ArucoMarkers
+from geometry_msgs.msg import PoseArray, Pose
 
 import time
 from enum import Enum
@@ -29,6 +31,7 @@ class ControllerNode(Node):
         super().__init__('controller_node')
         self.tello_controller = self.create_subscription(Empty, '/iisrl/tello_controller', self.main_callback, 10)
         self.tello_response = self.create_subscription(TelloResponse, '/drone1/tello_response', self.tello_response_callback, 10)
+        self.aruco_sub = self.create_subscription(ArucoMarkers, '/aruco_markers', self.get_markers, 10)
 
         self.tello_service_server = self.create_service(TelloState, '/iisrl/tello_state', self.state_callback)
         self.tello_service_client = self.create_client(TelloAction, '/drone1/tello_action')
@@ -108,7 +111,6 @@ class ControllerNode(Node):
         self.service_request.cmd = 'rc 0 0 0 0'
         self.tello_service_client.call_async(self.service_request)
 
-
         self.action_done = True
         self.state = self.TelloState.HOVERING
         self.next_state = self.TelloState.HOVERING
@@ -124,6 +126,17 @@ class ControllerNode(Node):
 
         self.service_request.cmd = 'land'
         self.tello_service_client.call_async(self.service_request)
+
+    def get_markers(self, msg):
+        marker_list = msg.marker_ids
+        poses_list = msg.poses 
+        print("DEJ MARKER")
+        if 0 in marker_list:
+            id = marker_list.index(0)
+            pose = poses_list[id]
+            print(pose.position.y)
+            
+            
 
 
 def main(args=None):
