@@ -212,10 +212,10 @@
       <pose>2.53714 -0.048243 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>387 759000000</sim_time>
-      <real_time>98 71265650</real_time>
-      <wall_time>1667666723 786813153</wall_time>
-      <iterations>97399</iterations>
+      <sim_time>818 142000000</sim_time>
+      <real_time>432 339209072</real_time>
+      <wall_time>1668355574 345912598</wall_time>
+      <iterations>430383</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -227,128 +227,128 @@
         </link>
       </model>
       <model name='marker_0'>
-        <pose>4 0.036051 0 0 -0 0</pose>
+        <pose>4.57715 0.036051 1.27944 0 -1.5429 0</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>3.99919 0.036051 0 0 -0 0</pose>
+          <pose>4.57715 0.036051 1.27944 0 -1.5429 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='marker_pad'>
-          <pose>3.99919 0.036051 -0.001 0 -0 0</pose>
+          <pose>4.57815 0.036051 1.27941 0 -1.5429 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='marker_1'>
-        <pose>3.99521 0.313146 0 0 -0 0</pose>
+        <pose>4.43161 -0.678154 1.29908 0 -1.55273 0</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>3.99521 0.313146 0 0 -0 0</pose>
+          <pose>4.43161 -0.678154 1.29908 0 -1.55273 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='marker_pad'>
-          <pose>3.99521 0.313146 -0.001 0 -0 0</pose>
+          <pose>4.43261 -0.678154 1.29906 0 -1.55273 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='marker_2'>
-        <pose>4.0028 0.610182 0 0 -0 0</pose>
+        <pose>4.70082 0.055109 0.725616 3.14159 -1.56677 3.14159</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>4.0028 0.610182 0 0 -0 0</pose>
+          <pose>4.70082 0.055109 0.725616 3.14159 -1.56677 3.14159</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='marker_pad'>
-          <pose>4.0028 0.610182 -0.001 0 -0 0</pose>
+          <pose>4.70182 0.055109 0.72562 3.14159 -1.56677 3.14159</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='marker_3'>
-        <pose>4.34665 0.509681 0 0 -0 0</pose>
+        <pose>4.34665 -1.28487 1.10027 0 -1.56021 0</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>4.34665 0.509681 0 0 -0 0</pose>
+          <pose>4.34665 -1.28487 1.10027 0 -1.56021 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='marker_pad'>
-          <pose>4.34665 0.509681 -0.001 0 -0 0</pose>
+          <pose>4.34765 -1.28487 1.10026 0 -1.56021 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='marker_4'>
-        <pose>4.01333 0.9017 0 0 -0 0</pose>
+        <pose>4.61455 0.9017 0.956564 0 -1.55415 0</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>4.01333 0.9017 0 0 -0 0</pose>
+          <pose>4.61455 0.9017 0.956564 0 -1.55415 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='marker_pad'>
-          <pose>4.01333 0.9017 -0.001 0 -0 0</pose>
+          <pose>4.61555 0.9017 0.956547 0 -1.55415 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='marker_5'>
-        <pose>4.00882 1.24921 0 0 -0 0</pose>
+        <pose>4.51148 1.24921 0.695473 0 -1.55868 0</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>4.00882 1.24921 0 0 -0 0</pose>
+          <pose>4.51148 1.24921 0.695473 0 -1.55868 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='marker_pad'>
-          <pose>4.00882 1.24921 -0.001 0 -0 0</pose>
+          <pose>4.51248 1.24921 0.695461 0 -1.55868 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='marker_6'>
-        <pose>4.00388 1.57198 0 0 -0 0</pose>
+        <pose>4.45159 -1.75962 0.343917 0 -1.56189 0</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>4.00388 1.57198 0 0 -0 0</pose>
+          <pose>4.45159 -1.75962 0.343917 0 -1.56189 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='marker_pad'>
-          <pose>4.00388 1.57198 -0.001 0 -0 0</pose>
+          <pose>4.45259 -1.75962 0.343908 0 -1.56189 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='marker_7'>
-        <pose>4.02625 1.91179 0 0 -0 0</pose>
+        <pose>4.43842 -0.8271 0.518121 3.14159 -1.55643 3.14159</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>4.02625 1.91179 0 0 -0 0</pose>
+          <pose>4.43842 -0.8271 0.518121 3.14159 -1.55643 3.14159</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='marker_pad'>
-          <pose>4.02625 1.91179 -0.001 0 -0 0</pose>
+          <pose>4.43942 -0.8271 0.518136 3.14159 -1.55643 3.14159</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -360,7 +360,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>5.92151 -6.39291 4.04628 -0 0.431644 1.76099</pose>
+        <pose>-2.64974 -11.2381 4.58027 0 0.433797 1.04105</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
