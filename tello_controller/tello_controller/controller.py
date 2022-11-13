@@ -37,6 +37,8 @@ class ControllerNode(Node):
         self.tello_service_client = self.create_client(TelloAction, '/drone1/tello_action')
         self.service_request = TelloAction.Request()
 
+        self.pose = Pose()
+
     def state_callback(self, request, response):
         response.state = str(self.state)
         response.value = int(self.state.value)
@@ -96,24 +98,38 @@ class ControllerNode(Node):
         while not self.tello_service_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
 
-        self.service_request.cmd = 'rc 0.2 0 0 0'
-        self.tello_service_client.call_async(self.service_request)
-        time.sleep(3)
-        self.service_request.cmd = 'rc 0 0.2 0 0'
-        self.tello_service_client.call_async(self.service_request)
-        time.sleep(3)
-        self.service_request.cmd = 'rc -0.2 0 0 0'
-        self.tello_service_client.call_async(self.service_request)
-        time.sleep(3)
-        self.service_request.cmd = 'rc 0 -0.2 0 0'
-        self.tello_service_client.call_async(self.service_request)
-        time.sleep(3)
-        self.service_request.cmd = 'rc 0 0 0 0'
+        print("DUPA")
+
+        x_vel = self.pose.position.z/10
+        y_vel = self.pose.position.y/10
+        z_vel = self.pose.position.x/10
+        
+        self.service_request.cmd = f'rc {x_vel} {y_vel} {z_vel} 0'
         self.tello_service_client.call_async(self.service_request)
 
-        self.action_done = True
+
+        # self.service_request.cmd = 'rc 0.2 0 0 0'
+        # self.tello_service_client.call_async(self.service_request)
+        # time.sleep(3)
+        # self.service_request.cmd = 'rc 0 0.2 0 0'
+        # self.tello_service_client.call_async(self.service_request)
+        # time.sleep(3)
+        # self.service_request.cmd = 'rc -0.2 0 0 0'
+        # self.tello_service_client.call_async(self.service_request)
+        # time.sleep(3)
+        # self.service_request.cmd = 'rc 0 -0.2 0 0'
+        # self.tello_service_client.call_async(self.service_request)
+        # time.sleep(3)
+        # self.service_request.cmd = 'rc 0 0 0 0'
+        # self.tello_service_client.call_async(self.service_request)
+
         self.state = self.TelloState.HOVERING
         self.next_state = self.TelloState.HOVERING
+
+        self.action_done = False
+        if self.action_done:
+            print("SKONCZONE")
+        time.sleep(0.1)
         self.controller()
 
     def landing_func(self):
@@ -128,13 +144,13 @@ class ControllerNode(Node):
         self.tello_service_client.call_async(self.service_request)
 
     def get_markers(self, msg):
-        marker_list = msg.marker_ids
-        poses_list = msg.poses 
+        self.marker_list = msg.marker_ids
+        self.poses_list = msg.poses 
         print("DEJ MARKER")
-        if 0 in marker_list:
-            id = marker_list.index(0)
-            pose = poses_list[id]
-            print(pose.position.y)
+        if 0 in self.marker_list:
+            id = self.marker_list.index(0)
+            self.pose = self.poses_list[id]
+            print(self.pose.position)
             
             
 
