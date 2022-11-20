@@ -40,6 +40,11 @@ from sensor_msgs.msg import Image
 from geometry_msgs.msg import PoseArray, Pose
 from ros2_aruco_interfaces.msg import ArucoMarkers
 
+#tf
+
+from tf2_ros import TransformBroadcaster
+from geometry_msgs.msg import TransformStamped
+
 
 class ArucoNode(rclpy.node.Node):
 
@@ -87,6 +92,9 @@ class ArucoNode(rclpy.node.Node):
         self.info_msg = None
         self.intrinsic_mat = None
         self.distortion = None
+
+        #tf
+        self.tf_broadcaster = TransformBroadcaster(self)
 
         self.aruco_dictionary = cv2.aruco.Dictionary_get(dictionary_id)
         self.aruco_parameters = cv2.aruco.DetectorParameters_create()
@@ -151,6 +159,26 @@ class ArucoNode(rclpy.node.Node):
                 pose_array.poses.append(pose)
                 markers.poses.append(pose)
                 markers.marker_ids.append(marker_id[0])
+
+                #tf 
+                t = TransformStamped()
+
+                t.header.stamp = self.get_clock().now().to_msg()
+                t.header.frame_id = 'base_link_1'
+                t.child_frame_id = str(marker_id)
+
+                t.transform.translation.x = tvecs[i][0][0]
+                t.transform.translation.y = tvecs[i][0][1]
+                t.transform.translation.z = tvecs[i][0][2]
+          
+                t.transform.rotation.x = quat[0]
+                t.transform.rotation.y = quat[1]
+                t.transform.rotation.z = quat[2]
+                t.transform.rotation.w = quat[3]
+
+                # Send the transformation
+                self.tf_broadcaster.sendTransform(t)
+
 
             self.poses_pub.publish(pose_array)
             self.markers_pub.publish(markers)
