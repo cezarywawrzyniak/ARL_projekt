@@ -1,0 +1,14 @@
+
+material ArucoVisualMarker22/Marker
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture aruco_mark_22.png
+			}
+		}
+	}
+}
