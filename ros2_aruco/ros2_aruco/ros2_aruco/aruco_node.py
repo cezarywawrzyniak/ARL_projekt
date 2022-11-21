@@ -87,6 +87,7 @@ class ArucoNode(rclpy.node.Node):
         # Set up publishers
         self.poses_pub = self.create_publisher(PoseArray, 'aruco_poses', 10)
         self.markers_pub = self.create_publisher(ArucoMarkers, 'aruco_markers', 10)
+        self.image_pub = self.create_publisher(Image, 'aruco_image', 10)
 
         # Set up fields for camera parameters
         self.info_msg = None
@@ -114,7 +115,7 @@ class ArucoNode(rclpy.node.Node):
             return
 
         cv_image = self.bridge.imgmsg_to_cv2(img_msg,
-                                             desired_encoding='mono8')
+                                             desired_encoding='rgb8')
         markers = ArucoMarkers()
         pose_array = PoseArray()
         if self.camera_frame is None:
@@ -131,6 +132,15 @@ class ArucoNode(rclpy.node.Node):
         corners, marker_ids, rejected = cv2.aruco.detectMarkers(cv_image,
                                                                 self.aruco_dictionary,
                                                                 parameters=self.aruco_parameters)
+
+
+        # for i in range(len(marker_ids)):
+            # marker_id = marker_ids[i]
+            # marker_corners = corners[i]
+
+            # print(marker_id)
+            # print(marker_corners)
+
         if marker_ids is not None:
 
             if cv2.__version__ > '4.0.0':
@@ -182,6 +192,43 @@ class ArucoNode(rclpy.node.Node):
 
             self.poses_pub.publish(pose_array)
             self.markers_pub.publish(markers)
+
+            frame = cv_image.copy()
+
+            # flatten the ArUco IDs list
+            ids = marker_ids.flatten()
+            # loop over the detected ArUCo corners
+            for (markerCorner, markerID) in zip(corners, marker_ids):
+                # extract the marker corners (which are always returned
+                # in top-left, top-right, bottom-right, and bottom-left
+                # order)
+                corners = markerCorner.reshape((4, 2))
+                (topLeft, topRight, bottomRight, bottomLeft) = corners
+                # convert each of the (x, y)-coordinate pairs to integers
+                topRight = (int(topRight[0]), int(topRight[1]))
+                bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
+                bottomLeft = (int(bottomLeft[0]), int(bottomLeft[1]))
+                topLeft = (int(topLeft[0]), int(topLeft[1]))
+
+                # draw the bounding box of the ArUCo detection
+                cv2.line(frame, topLeft, topRight, (0, 255, 0), 2)
+                cv2.line(frame, topRight, bottomRight, (0, 255, 0), 2)
+                cv2.line(frame, bottomRight, bottomLeft, (0, 255, 0), 2)
+                cv2.line(frame, bottomLeft, topLeft, (0, 255, 0), 2)
+                # compute and draw the center (x, y)-coordinates of the
+                # ArUco marker
+                cX = int((topLeft[0] + bottomRight[0]) / 2.0)
+                cY = int((topLeft[1] + bottomRight[1]) / 2.0)
+                cv2.circle(frame, (cX, cY), 4, (0, 0, 255), -1)
+                # draw the ArUco marker ID on the frame
+                cv2.putText(frame, str(markerID),
+                    (topLeft[0], topLeft[1] - 15),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                        0.5, (0, 255, 0), 2)
+
+            bridge = CvBridge()
+            img_msg = bridge.cv2_to_imgmsg(frame)
+            self.image_pub.publish(img_msg)
 
 
 def main():
