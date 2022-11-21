@@ -1,0 +1,14 @@
+
+material ArucoVisualMarker9/Marker
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture aruco_mark_9.png
+			}
+		}
+	}
+}
