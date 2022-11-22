@@ -57,6 +57,7 @@ class ArucoNode(rclpy.node.Node):
         self.declare_parameter("image_topic", "/drone1/image_raw")
         self.declare_parameter("camera_info_topic", "/drone1/camera_info")
         self.declare_parameter("camera_frame", None)
+        self.tf_dict = {}
 
         self.marker_size = self.get_parameter("marker_size").get_parameter_value().double_value
         dictionary_id_name = self.get_parameter(
@@ -151,6 +152,8 @@ class ArucoNode(rclpy.node.Node):
                 rvecs, tvecs = cv2.aruco.estimatePoseSingleMarkers(corners,
                                                                    self.marker_size, self.intrinsic_mat,
                                                                    self.distortion)
+            
+            
             for i, marker_id in enumerate(marker_ids):
                 pose = Pose()
                 pose.position.x = tvecs[i][0][0]
@@ -174,7 +177,7 @@ class ArucoNode(rclpy.node.Node):
                 t = TransformStamped()
 
                 t.header.stamp = self.get_clock().now().to_msg()
-                t.header.frame_id = 'base_link_1'
+                t.header.frame_id = 'camera_link_1'
                 t.child_frame_id = str(marker_id)
 
                 t.transform.translation.x = tvecs[i][0][0]
@@ -186,9 +189,12 @@ class ArucoNode(rclpy.node.Node):
                 t.transform.rotation.z = quat[2]
                 t.transform.rotation.w = quat[3]
 
-                # Send the transformation
-                self.tf_broadcaster.sendTransform(t)
-
+                self.tf_dict[marker_id[0]] = t
+            
+            for marker_id, tf in self.tf_dict.items():
+                if not marker_id in marker_ids.flatten():
+                    tf.header.stamp = self.get_clock().now().to_msg()
+                self.tf_broadcaster.sendTransform(tf)
 
             self.poses_pub.publish(pose_array)
             self.markers_pub.publish(markers)
