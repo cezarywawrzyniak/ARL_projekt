@@ -1,0 +1,48 @@
+[0.146s] Invoking command in '/work/tello_ros_ws/src/build/ros2_shared': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake /work/tello_ros_ws/src/ros2_shared -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/work/tello_ros_ws/src/install/ros2_shared
+[1.476s] -- The C compiler identification is GNU 9.4.0
+[1.476s] -- The CXX compiler identification is GNU 9.4.0
+[1.476s] -- Check for working C compiler: /usr/bin/cc
+[1.476s] -- Check for working C compiler: /usr/bin/cc -- works
+[1.478s] -- Detecting C compiler ABI info
+[1.479s] -- Detecting C compiler ABI info - done
+[1.480s] -- Detecting C compile features
+[1.480s] -- Detecting C compile features - done
+[1.481s] -- Check for working CXX compiler: /usr/bin/c++
+[1.484s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[1.485s] -- Detecting CXX compiler ABI info
+[1.485s] -- Detecting CXX compiler ABI info - done
+[1.486s] -- Detecting CXX compile features
+[1.486s] -- Detecting CXX compile features - done
+[1.487s] -- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+[1.488s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[1.489s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.493s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.671s] -- Configuring done
+[1.677s] -- Generating done
+[1.680s] -- Build files have been written to: /work/tello_ros_ws/src/build/ros2_shared
+[1.687s] Invoked command in '/work/tello_ros_ws/src/build/ros2_shared' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake /work/tello_ros_ws/src/ros2_shared -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/work/tello_ros_ws/src/install/ros2_shared
+[1.693s] Invoking command in '/work/tello_ros_ws/src/build/ros2_shared': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake --build /work/tello_ros_ws/src/build/ros2_shared -- -j8 -l8
+[1.784s] Invoked command in '/work/tello_ros_ws/src/build/ros2_shared' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake --build /work/tello_ros_ws/src/build/ros2_shared -- -j8 -l8
+[1.862s] Invoking command in '/work/tello_ros_ws/src/build/ros2_shared': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake --install /work/tello_ros_ws/src/build/ros2_shared
+[1.883s] -- Install configuration: ""
+[1.885s] -- Execute custom install script
+[1.887s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/include/ros2_shared/context_macros.hpp
+[1.910s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/include/ros2_shared/param_macros.hpp
+[1.934s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/include/ros2_shared/string_printf.hpp
+[1.958s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ament_index/resource_index/package_run_dependencies/ros2_shared
+[1.981s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ament_index/resource_index/parent_prefix_path/ros2_shared
+[2.004s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/environment/ament_prefix_path.sh
+[2.028s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/environment/ament_prefix_path.dsv
+[2.052s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/environment/path.sh
+[2.074s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/environment/path.dsv
+[2.096s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/local_setup.bash
+[2.123s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/local_setup.sh
+[2.145s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/local_setup.zsh
+[2.167s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/local_setup.dsv
+[2.189s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/package.dsv
+[2.210s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ament_index/resource_index/packages/ros2_shared
+[2.232s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/cmake/ament_cmake_export_include_directories-extras.cmake
+[2.254s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/cmake/ros2_sharedConfig.cmake
+[2.276s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/cmake/ros2_sharedConfig-version.cmake
+[2.299s] -- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/package.xml
+[2.335s] Invoked command in '/work/tello_ros_ws/src/build/ros2_shared' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake --install /work/tello_ros_ws/src/build/ros2_shared

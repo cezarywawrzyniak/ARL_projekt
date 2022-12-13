@@ -1,0 +1,1 @@
+/work/tello_ros_ws/src/fiducial_vlam/fiducial_vlam/launch/launch_one_gazebo.py

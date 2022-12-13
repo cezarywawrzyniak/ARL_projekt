@@ -1,0 +1,6 @@
+{
+  "package_name": "tello_interface",
+  "non_idl_tuples": [
+    "/work/tello_ros_ws/src/tello_interface:srv/TelloState.srv"
+  ]
+}

@@ -1,0 +1,89 @@
+[1.351s] Invoking command in '/work/tello_ros_ws/src/build/tello_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake /work/tello_ros_ws/src/tello_ros/tello_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/work/tello_ros_ws/src/install/tello_description
+[1.472s] -- The C compiler identification is GNU 9.4.0
+[1.607s] -- The CXX compiler identification is GNU 9.4.0
+[1.622s] -- Check for working C compiler: /usr/bin/cc
+[1.803s] -- Check for working C compiler: /usr/bin/cc -- works
+[1.805s] -- Detecting C compiler ABI info
+[1.956s] -- Detecting C compiler ABI info - done
+[1.989s] -- Detecting C compile features
+[1.990s] -- Detecting C compile features - done
+[1.997s] -- Check for working CXX compiler: /usr/bin/c++
+[2.195s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[2.198s] -- Detecting CXX compiler ABI info
+[2.387s] -- Detecting CXX compiler ABI info - done
+[2.414s] -- Detecting CXX compile features
+[2.415s] -- Detecting CXX compile features - done
+[2.428s] -- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+[2.524s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[2.524s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[3.036s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[3.155s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello.urdf
+[3.155s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello_1.urdf
+[3.156s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello_2.urdf
+[3.156s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello_3.urdf
+[3.156s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello_4.urdf
+[3.157s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello_5.urdf
+[3.157s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello_6.urdf
+[3.158s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello_7.urdf
+[3.158s] -- creating rules for /work/tello_ros_ws/src/build/tello_description/urdf/tello_8.urdf
+[3.333s] -- Configuring done
+[3.349s] -- Generating done
+[3.356s] -- Build files have been written to: /work/tello_ros_ws/src/build/tello_description
+[3.366s] Invoked command in '/work/tello_ros_ws/src/build/tello_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake /work/tello_ros_ws/src/tello_ros/tello_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/work/tello_ros_ws/src/install/tello_description
+[3.372s] Invoking command in '/work/tello_ros_ws/src/build/tello_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake --build /work/tello_ros_ws/src/build/tello_description -- -j8 -l8
+[3.712s] [35m[1mScanning dependencies of target generate_urdf_6[0m
+[3.713s] [35m[1mScanning dependencies of target generate_urdf_1[0m
+[3.713s] [35m[1mScanning dependencies of target generate_urdf_3[0m
+[3.713s] [35m[1mScanning dependencies of target generate_urdf[0m
+[3.713s] [35m[1mScanning dependencies of target generate_urdf_8[0m
+[3.714s] [ 11%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello_6.urdf[0m
+[3.714s] [35m[1mScanning dependencies of target generate_urdf_4[0m
+[3.714s] [ 22%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello_1.urdf[0m
+[3.714s] [ 33%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello_3.urdf[0m
+[3.715s] [ 44%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello.urdf[0m
+[3.715s] [ 55%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello_8.urdf[0m
+[3.715s] [35m[1mScanning dependencies of target generate_urdf_5[0m
+[3.715s] [ 66%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello_4.urdf[0m
+[3.715s] [35m[1mScanning dependencies of target generate_urdf_7[0m
+[3.716s] [ 66%] Built target generate_urdf_6
+[3.745s] [ 77%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello_5.urdf[0m
+[3.746s] [ 88%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello_7.urdf[0m
+[3.787s] [ 88%] Built target generate_urdf_1
+[3.790s] [ 88%] Built target generate_urdf_3
+[3.797s] [35m[1mScanning dependencies of target generate_urdf_2[0m
+[3.800s] [ 88%] Built target generate_urdf_8
+[3.842s] [100%] [34m[1mGenerate /work/tello_ros_ws/src/build/tello_description/urdf/tello_2.urdf[0m
+[3.846s] [100%] Built target generate_urdf_4
+[3.851s] [100%] Built target generate_urdf_5
+[3.853s] [100%] Built target generate_urdf
+[3.883s] [100%] Built target generate_urdf_7
+[3.912s] [100%] Built target generate_urdf_2
+[3.929s] Invoked command in '/work/tello_ros_ws/src/build/tello_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake --build /work/tello_ros_ws/src/build/tello_description -- -j8 -l8
+[3.976s] Invoking command in '/work/tello_ros_ws/src/build/tello_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake --install /work/tello_ros_ws/src/build/tello_description
+[3.990s] -- Install configuration: ""
+[3.990s] -- Execute custom install script
+[3.992s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello.urdf
+[4.006s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello_1.urdf
+[4.020s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello_2.urdf
+[4.041s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello_3.urdf
+[4.062s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello_4.urdf
+[4.083s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello_5.urdf
+[4.097s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello_6.urdf
+[4.111s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello_7.urdf
+[4.125s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/urdf/tello_8.urdf
+[4.144s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/ament_index/resource_index/package_run_dependencies/tello_description
+[4.165s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/ament_index/resource_index/parent_prefix_path/tello_description
+[4.187s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/environment/ament_prefix_path.sh
+[4.201s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/environment/ament_prefix_path.dsv
+[4.215s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/environment/path.sh
+[4.230s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/environment/path.dsv
+[4.244s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/local_setup.bash
+[4.262s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/local_setup.sh
+[4.283s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/local_setup.zsh
+[4.304s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/local_setup.dsv
+[4.326s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/package.dsv
+[4.348s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/ament_index/resource_index/packages/tello_description
+[4.369s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/cmake/tello_descriptionConfig.cmake
+[4.390s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/cmake/tello_descriptionConfig-version.cmake
+[4.411s] -- Symlinking: /work/tello_ros_ws/src/install/tello_description/share/tello_description/package.xml
+[4.441s] Invoked command in '/work/tello_ros_ws/src/build/tello_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/work/tello_ros_ws/install/tello_controller:/work/tello_ros_ws/install/ros2_aruco:/work/tello_ros_ws/install/pkg_g2rr:/opt/ros/foxy /usr/bin/cmake --install /work/tello_ros_ws/src/build/tello_description

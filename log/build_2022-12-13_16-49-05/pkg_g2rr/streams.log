@@ -1,0 +1,25 @@
+[2.468s] Invoking command in '/work/tello_ros_ws/src/build/pkg_g2rr': PYTHONPATH=/work/tello_ros_ws/src/install/pkg_g2rr/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /work/tello_ros_ws/src/install/pkg_g2rr --editable --build-directory /work/tello_ros_ws/src/build/pkg_g2rr/build --no-deps install_data --install-dir /work/tello_ros_ws/src/install/pkg_g2rr
+[3.110s] running develop
+[3.446s] running egg_info
+[3.446s] creating pkg_g2rr.egg-info
+[3.446s] writing pkg_g2rr.egg-info/PKG-INFO
+[3.447s] writing dependency_links to pkg_g2rr.egg-info/dependency_links.txt
+[3.447s] writing entry points to pkg_g2rr.egg-info/entry_points.txt
+[3.447s] writing requirements to pkg_g2rr.egg-info/requires.txt
+[3.447s] writing top-level names to pkg_g2rr.egg-info/top_level.txt
+[3.447s] writing manifest file 'pkg_g2rr.egg-info/SOURCES.txt'
+[3.537s] reading manifest file 'pkg_g2rr.egg-info/SOURCES.txt'
+[3.539s] writing manifest file 'pkg_g2rr.egg-info/SOURCES.txt'
+[3.650s] running build_ext
+[3.651s] Creating /work/tello_ros_ws/src/install/pkg_g2rr/lib/python3.8/site-packages/site.py
+[3.656s] Creating /work/tello_ros_ws/src/install/pkg_g2rr/lib/python3.8/site-packages/pkg-g2rr.egg-link (link to .)
+[3.657s] Installing g2rr script to /work/tello_ros_ws/src/install/pkg_g2rr/lib/pkg_g2rr
+[3.658s] 
+[3.659s] Installed /work/tello_ros_ws/src/build/pkg_g2rr
+[3.659s] running install_data
+[3.660s] creating /work/tello_ros_ws/src/install/pkg_g2rr/share/ament_index
+[3.661s] creating /work/tello_ros_ws/src/install/pkg_g2rr/share/ament_index/resource_index
+[3.661s] creating /work/tello_ros_ws/src/install/pkg_g2rr/share/ament_index/resource_index/packages
+[3.661s] copying resource/pkg_g2rr -> /work/tello_ros_ws/src/install/pkg_g2rr/share/ament_index/resource_index/packages
+[3.662s] copying package.xml -> /work/tello_ros_ws/src/install/pkg_g2rr/share/pkg_g2rr
+[3.739s] Invoked command in '/work/tello_ros_ws/src/build/pkg_g2rr' returned '0': PYTHONPATH=/work/tello_ros_ws/src/install/pkg_g2rr/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /work/tello_ros_ws/src/install/pkg_g2rr --editable --build-directory /work/tello_ros_ws/src/build/pkg_g2rr/build --no-deps install_data --install-dir /work/tello_ros_ws/src/install/pkg_g2rr

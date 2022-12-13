@@ -1,0 +1,23 @@
+running develop
+running egg_info
+creating tello_controller.egg-info
+writing tello_controller.egg-info/PKG-INFO
+writing dependency_links to tello_controller.egg-info/dependency_links.txt
+writing entry points to tello_controller.egg-info/entry_points.txt
+writing requirements to tello_controller.egg-info/requires.txt
+writing top-level names to tello_controller.egg-info/top_level.txt
+writing manifest file 'tello_controller.egg-info/SOURCES.txt'
+reading manifest file 'tello_controller.egg-info/SOURCES.txt'
+writing manifest file 'tello_controller.egg-info/SOURCES.txt'
+running build_ext
+Creating /work/tello_ros_ws/src/install/tello_controller/lib/python3.8/site-packages/site.py
+Creating /work/tello_ros_ws/src/install/tello_controller/lib/python3.8/site-packages/tello-controller.egg-link (link to .)
+Installing controller_node script to /work/tello_ros_ws/src/install/tello_controller/lib/tello_controller
+
+Installed /work/tello_ros_ws/src/build/tello_controller
+running install_data
+creating /work/tello_ros_ws/src/install/tello_controller/share/ament_index
+creating /work/tello_ros_ws/src/install/tello_controller/share/ament_index/resource_index
+creating /work/tello_ros_ws/src/install/tello_controller/share/ament_index/resource_index/packages
+copying resource/tello_controller -> /work/tello_ros_ws/src/install/tello_controller/share/ament_index/resource_index/packages
+copying package.xml -> /work/tello_ros_ws/src/install/tello_controller/share/tello_controller

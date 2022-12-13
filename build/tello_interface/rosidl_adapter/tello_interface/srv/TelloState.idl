@@ -1,0 +1,17 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from tello_interface/srv/TelloState.srv
+// generated code does not contain a copyright notice
+
+
+module tello_interface {
+  module srv {
+    struct TelloState_Request {
+      boolean request;
+    };
+    struct TelloState_Response {
+      string state;
+
+      uint8 value;
+    };
+  };
+};

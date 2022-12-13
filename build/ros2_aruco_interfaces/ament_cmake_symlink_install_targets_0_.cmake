@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/work/tello_ros_ws/src/build/ros2_aruco_interfaces/libros2_aruco_interfaces__rosidl_typesupport_fastrtps_c.so" "TARGETS" "ros2_aruco_interfaces__rosidl_typesupport_fastrtps_c" "ARCHIVE_DESTINATION" "lib" "LIBRARY_DESTINATION" "lib" "RUNTIME_DESTINATION" "bin")

@@ -1,0 +1,1 @@
+/work/tello_ros_ws/src/build/ros2_aruco_interfaces/rosidl_cmake/rosidl_cmake-extras.cmake

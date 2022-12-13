@@ -1,0 +1,15 @@
+package.xml
+setup.cfg
+setup.py
+resource/ros2_aruco
+ros2_aruco/__init__.py
+ros2_aruco/aruco_generate_marker.py
+ros2_aruco/aruco_node.py
+ros2_aruco/transformations.py
+ros2_aruco.egg-info/PKG-INFO
+ros2_aruco.egg-info/SOURCES.txt
+ros2_aruco.egg-info/dependency_links.txt
+ros2_aruco.egg-info/entry_points.txt
+ros2_aruco.egg-info/requires.txt
+ros2_aruco.egg-info/top_level.txt
+ros2_aruco.egg-info/zip-safe

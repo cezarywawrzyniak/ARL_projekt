@@ -1,0 +1,1 @@
+/work/tello_ros_ws/src/build/fiducial_vlam_msgs/rosidl_typesupport_introspection_c/fiducial_vlam_msgs/msg/detail/observation__rosidl_typesupport_introspection_c.h

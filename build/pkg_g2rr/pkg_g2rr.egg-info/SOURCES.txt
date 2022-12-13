@@ -1,0 +1,12 @@
+package.xml
+setup.cfg
+setup.py
+pkg_g2rr/__init__.py
+pkg_g2rr.egg-info/PKG-INFO
+pkg_g2rr.egg-info/SOURCES.txt
+pkg_g2rr.egg-info/dependency_links.txt
+pkg_g2rr.egg-info/entry_points.txt
+pkg_g2rr.egg-info/requires.txt
+pkg_g2rr.egg-info/top_level.txt
+pkg_g2rr.egg-info/zip-safe
+resource/pkg_g2rr

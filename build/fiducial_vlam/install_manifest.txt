@@ -1,0 +1,6 @@
+/work/tello_ros_ws/src/install/fiducial_vlam/lib/libvloc_node.so
+/work/tello_ros_ws/src/install/fiducial_vlam/lib/libvmap_node.so
+/work/tello_ros_ws/src/install/fiducial_vlam/share/fiducial_vlam/cmake/export_vloc_nodeExport.cmake
+/work/tello_ros_ws/src/install/fiducial_vlam/share/fiducial_vlam/cmake/export_vloc_nodeExport-noconfig.cmake
+/work/tello_ros_ws/src/install/fiducial_vlam/share/fiducial_vlam/cmake/export_vmap_nodeExport.cmake
+/work/tello_ros_ws/src/install/fiducial_vlam/share/fiducial_vlam/cmake/export_vmap_nodeExport-noconfig.cmake

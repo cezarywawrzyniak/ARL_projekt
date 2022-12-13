@@ -1,0 +1,42 @@
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is GNU 9.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /work/tello_ros_ws/src/build/ros2_shared
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/include/ros2_shared/context_macros.hpp
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/include/ros2_shared/param_macros.hpp
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/include/ros2_shared/string_printf.hpp
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ament_index/resource_index/package_run_dependencies/ros2_shared
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ament_index/resource_index/parent_prefix_path/ros2_shared
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/environment/ament_prefix_path.sh
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/environment/ament_prefix_path.dsv
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/environment/path.sh
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/environment/path.dsv
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/local_setup.bash
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/local_setup.sh
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/local_setup.zsh
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/local_setup.dsv
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/package.dsv
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ament_index/resource_index/packages/ros2_shared
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/cmake/ros2_sharedConfig.cmake
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/cmake/ros2_sharedConfig-version.cmake
+-- Symlinking: /work/tello_ros_ws/src/install/ros2_shared/share/ros2_shared/package.xml

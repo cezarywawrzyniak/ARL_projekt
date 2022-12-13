@@ -1,0 +1,25 @@
+[2.470s] Invoking command in '/work/tello_ros_ws/src/build/tello_controller': PYTHONPATH=/work/tello_ros_ws/src/install/tello_controller/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /work/tello_ros_ws/src/install/tello_controller --editable --build-directory /work/tello_ros_ws/src/build/tello_controller/build --no-deps install_data --install-dir /work/tello_ros_ws/src/install/tello_controller
+[3.669s] running develop
+[3.669s] running egg_info
+[3.669s] creating tello_controller.egg-info
+[3.670s] writing tello_controller.egg-info/PKG-INFO
+[3.670s] writing dependency_links to tello_controller.egg-info/dependency_links.txt
+[3.670s] writing entry points to tello_controller.egg-info/entry_points.txt
+[3.670s] writing requirements to tello_controller.egg-info/requires.txt
+[3.670s] writing top-level names to tello_controller.egg-info/top_level.txt
+[3.671s] writing manifest file 'tello_controller.egg-info/SOURCES.txt'
+[3.671s] reading manifest file 'tello_controller.egg-info/SOURCES.txt'
+[3.671s] writing manifest file 'tello_controller.egg-info/SOURCES.txt'
+[3.689s] running build_ext
+[3.689s] Creating /work/tello_ros_ws/src/install/tello_controller/lib/python3.8/site-packages/site.py
+[3.693s] Creating /work/tello_ros_ws/src/install/tello_controller/lib/python3.8/site-packages/tello-controller.egg-link (link to .)
+[3.694s] Installing controller_node script to /work/tello_ros_ws/src/install/tello_controller/lib/tello_controller
+[3.694s] 
+[3.695s] Installed /work/tello_ros_ws/src/build/tello_controller
+[3.695s] running install_data
+[3.696s] creating /work/tello_ros_ws/src/install/tello_controller/share/ament_index
+[3.696s] creating /work/tello_ros_ws/src/install/tello_controller/share/ament_index/resource_index
+[3.696s] creating /work/tello_ros_ws/src/install/tello_controller/share/ament_index/resource_index/packages
+[3.696s] copying resource/tello_controller -> /work/tello_ros_ws/src/install/tello_controller/share/ament_index/resource_index/packages
+[3.697s] copying package.xml -> /work/tello_ros_ws/src/install/tello_controller/share/tello_controller
+[3.782s] Invoked command in '/work/tello_ros_ws/src/build/tello_controller' returned '0': PYTHONPATH=/work/tello_ros_ws/src/install/tello_controller/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /work/tello_ros_ws/src/install/tello_controller --editable --build-directory /work/tello_ros_ws/src/build/tello_controller/build --no-deps install_data --install-dir /work/tello_ros_ws/src/install/tello_controller

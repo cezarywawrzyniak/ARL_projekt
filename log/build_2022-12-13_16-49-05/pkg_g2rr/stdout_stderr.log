@@ -1,0 +1,23 @@
+running develop
+running egg_info
+creating pkg_g2rr.egg-info
+writing pkg_g2rr.egg-info/PKG-INFO
+writing dependency_links to pkg_g2rr.egg-info/dependency_links.txt
+writing entry points to pkg_g2rr.egg-info/entry_points.txt
+writing requirements to pkg_g2rr.egg-info/requires.txt
+writing top-level names to pkg_g2rr.egg-info/top_level.txt
+writing manifest file 'pkg_g2rr.egg-info/SOURCES.txt'
+reading manifest file 'pkg_g2rr.egg-info/SOURCES.txt'
+writing manifest file 'pkg_g2rr.egg-info/SOURCES.txt'
+running build_ext
+Creating /work/tello_ros_ws/src/install/pkg_g2rr/lib/python3.8/site-packages/site.py
+Creating /work/tello_ros_ws/src/install/pkg_g2rr/lib/python3.8/site-packages/pkg-g2rr.egg-link (link to .)
+Installing g2rr script to /work/tello_ros_ws/src/install/pkg_g2rr/lib/pkg_g2rr
+
+Installed /work/tello_ros_ws/src/build/pkg_g2rr
+running install_data
+creating /work/tello_ros_ws/src/install/pkg_g2rr/share/ament_index
+creating /work/tello_ros_ws/src/install/pkg_g2rr/share/ament_index/resource_index
+creating /work/tello_ros_ws/src/install/pkg_g2rr/share/ament_index/resource_index/packages
+copying resource/pkg_g2rr -> /work/tello_ros_ws/src/install/pkg_g2rr/share/ament_index/resource_index/packages
+copying package.xml -> /work/tello_ros_ws/src/install/pkg_g2rr/share/pkg_g2rr
