@@ -13,14 +13,18 @@ from rclpy.node import Node
 from std_msgs.msg import Empty
 
 from math import sqrt
+from .pid import PID
 
+
+# PID USAGE
+# https://github.com/shijq23/alpha_drone/blob/main/face_track/src/face_track/tracker.py
 
 class ControllerNode(Node):
 
     state = 0
     action_done = False
     pose = Pose()
-    follow_marker = 6
+    follow_marker = 0
 
     def __init__(self):
         super().__init__('controller_node')
@@ -29,6 +33,24 @@ class ControllerNode(Node):
 
         self.tello_service_client = self.create_client(TelloAction, '/drone1/tello_action')
         self.service_request = TelloAction.Request()
+
+        self.fb_pid = PID('fb',
+                          kP=0.5,
+                          kI=0.01,
+                          kD=0.1,
+                          SP=0.0)
+        # terms for up and down speed control
+        self.ud_pid = PID('ud', kP=0.5, kI=0.01, kD=0.1, SP=0.0)
+        # terms for left and right speed control
+        self.lr_pid = PID('lr', kP=-0.5, kI=-0.01, kD=-0.1, SP=0.0)
+        # terms for yaw speed control
+        self.yaw_pid = PID('yaw', kP=-0.5, kI=-0.01, kD=-0.1, SP=0.0)
+        self.pid_cv: tuple = (0, 0, 0, 0)
+
+        self.fb_pid.reset()
+        self.lr_pid.reset()
+        self.ud_pid.reset()
+        self.yaw_pid.reset()
 
 
 
@@ -86,32 +108,63 @@ class ControllerNode(Node):
             self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
 
         distance = sqrt(self.pose.position.x * self.pose.position.x + self.pose.position.y * self.pose.position.y + self.pose.position.z * self.pose.position.z)
-        print(distance)
+        print("DISTANCE:", distance, self.follow_marker)
 
-        if self.pose.position.z > 0.15:
-            x_vel = 0.1
-        elif self.pose.position.z < - 0.15:
-            x_vel = -0.1
+        def clip(x: int, lower: int = -100, upper: int = 100) -> int:
+            return max(lower, min(upper, x))
+
+        if distance > 0.1:
+            # left_right_velocity
+            # lr_v = int(self.lr_pid.update(cx))
+            # lr_v = clip(lr_v, -5, 5)
+            lr_v = 0
+
+            # forward_backward_velocity
+            fb_v = float(self.fb_pid.update(self.pose.position.z))
+            # fb_v = clip(fb_v, -30, 30)
+            # fb_v = 0
+
+            # up_down_velocity
+            ud_v = float(self.ud_pid.update(self.pose.position.y))
+            # ud_v = clip(ud_v, -20, 20)
+            # ud_v = 0
+
+            # yaw_velocity
+            yaw_v = float(self.yaw_pid.update(self.pose.position.x))
+            # yaw_v = clip(yaw_v, -30, 30)
+            # yaw_v = 0
         else:
-            x_vel = 0.0
+            lr_v = 0
+            fb_v = 0
+            ud_v = 0
+            yaw_v = 0
 
-        if self.pose.position.y > 0.05:
-            z_vel = -0.05
-        elif self.pose.position.y < - 0.05:
-            z_vel = 0.05
-        else:
-            z_vel = 0.0
+        # if self.pose.position.z > 0.15:
+        #     x_vel = 0.1
+        # elif self.pose.position.z < - 0.15:
+        #     x_vel = -0.1
+        # else:
+        #     x_vel = 0.0
 
-        if self.pose.position.x > 0.05:
-            y_vel = -0.05
-        elif self.pose.position.x < - 0.05:
-            y_vel = 0.05
-        else:
-            y_vel = 0.0
+        # if self.pose.position.y > 0.05:
+        #     z_vel = -0.05
+        # elif self.pose.position.y < - 0.05:
+        #     z_vel = 0.05
+        # else:
+        #     z_vel = 0.0
 
+        # if self.pose.position.x > 0.05:
+        #     y_vel = -0.05
+        # elif self.pose.position.x < - 0.05:
+        #     y_vel = 0.05
+        # else:
+        #     y_vel = 0.0
 
-        print(f'rc {x_vel} {y_vel} {z_vel} 0')
-        self.service_request.cmd = f'rc {x_vel} {y_vel} {z_vel} 0'
+        # print(f'rc {x_vel} {y_vel} {z_vel} 0')
+        # self.service_request.cmd = f'rc {x_vel} {y_vel} {z_vel} 0'
+
+        print(f'rc {fb_v/5} {0} {0} 0')
+        self.service_request.cmd = f'rc {fb_v/5} {0} {0} 0'
         self.tello_service_client.call_async(self.service_request)
         # time.sleep(0.1)
 
