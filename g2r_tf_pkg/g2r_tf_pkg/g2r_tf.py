@@ -62,6 +62,7 @@ class G2r_tf_node(Node):
 
         t.header.stamp = self.get_clock().now().to_msg()
         t.header.frame_id = 'world'
+        
         t.child_frame_id = 'odom'
 
         t.transform.translation.x = odom_msg.pose.pose.position.x
