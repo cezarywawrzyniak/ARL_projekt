@@ -177,7 +177,7 @@ class ArucoNode(rclpy.node.Node):
                 t = TransformStamped()
 
                 t.header.stamp = self.get_clock().now().to_msg()
-                t.header.frame_id = 'camera_link_1'
+                t.header.frame_id = 'world'
                 t.child_frame_id = str(marker_id)
 
                 t.transform.translation.x = tvecs[i][0][0]
