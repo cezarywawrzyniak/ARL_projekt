@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/build/tello_interface/rosidl_generator_c/tello_interface/srv/tello_state.h

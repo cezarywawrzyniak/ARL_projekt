@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/build/ros2_shared/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake

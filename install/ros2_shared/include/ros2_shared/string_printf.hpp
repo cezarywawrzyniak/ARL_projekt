@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/ros2_shared/include/ros2_shared/string_printf.hpp

@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/build/tello_interface/rosidl_typesupport_introspection_c/tello_interface/msg/rosidl_typesupport_introspection_c__visibility_control.h

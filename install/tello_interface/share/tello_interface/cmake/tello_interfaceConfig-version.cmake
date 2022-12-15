@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/build/tello_interface/ament_cmake_core/tello_interfaceConfig-version.cmake

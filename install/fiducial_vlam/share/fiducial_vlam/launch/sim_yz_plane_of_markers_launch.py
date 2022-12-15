@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/fiducial_vlam/fiducial_vlam/launch/sim_yz_plane_of_markers_launch.py

@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/fiducial_vlam/fiducial_vlam/launch/sim_one_marker_launch.py

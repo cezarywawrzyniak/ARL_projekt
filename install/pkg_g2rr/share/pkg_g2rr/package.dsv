@@ -1,9 +1,0 @@
-source;share/pkg_g2rr/hook/pythonpath.ps1
-source;share/pkg_g2rr/hook/pythonpath.dsv
-source;share/pkg_g2rr/hook/pythonpath.sh
-source;share/pkg_g2rr/hook/ament_prefix_path.ps1
-source;share/pkg_g2rr/hook/ament_prefix_path.dsv
-source;share/pkg_g2rr/hook/ament_prefix_path.sh
-source;../../build/pkg_g2rr/share/pkg_g2rr/hook/pythonpath_develop.ps1
-source;../../build/pkg_g2rr/share/pkg_g2rr/hook/pythonpath_develop.dsv
-source;../../build/pkg_g2rr/share/pkg_g2rr/hook/pythonpath_develop.sh

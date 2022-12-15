@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/build/tello_msgs/rosidl_cmake/srv/TelloAction_Request.msg
