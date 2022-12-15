@@ -48,7 +48,7 @@ class G2r_tf_node(Node):
 
     def __init__(self):
         super().__init__('g2r_tf_node')
-        self.odom_sub = self.create_subscription(Odometry, '/repeater/tello1/pose/info', self.odom_callback, 10)
+        self.odom_sub = self.create_subscription(Odometry, '/repeater/tello_1/pose/info', self.odom_callback, 5)
         self.tf_broadcaster = TransformBroadcaster(self)
         print("Node started!")
         self.tf_static_broadcaster = StaticTransformBroadcaster(self)
@@ -57,7 +57,7 @@ class G2r_tf_node(Node):
 
 
     def odom_callback(self, odom_msg):
-
+        print("idzie")
         t = TransformStamped()
 
         t.header.stamp = self.get_clock().now().to_msg()
@@ -74,7 +74,7 @@ class G2r_tf_node(Node):
         t.transform.rotation.y = odom_msg.pose.pose.orientation.y
         t.transform.rotation.z = odom_msg.pose.pose.orientation.z
         t.transform.rotation.w = odom_msg.pose.pose.orientation.w
-        print(t.transform.translation.x)
+        # print(t.transform.translation.x)
 
         self.tf_broadcaster.sendTransform(t)
 
@@ -93,7 +93,7 @@ class G2r_tf_node(Node):
         t.transform.rotation.y = quat[1]
         t.transform.rotation.z = quat[2]
         t.transform.rotation.w = quat[3]
-        print(t)
+        # print(t)
 
         self.tf_static_broadcaster.sendTransform(t)     
 
