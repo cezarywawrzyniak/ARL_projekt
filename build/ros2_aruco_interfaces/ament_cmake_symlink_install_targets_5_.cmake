@@ -1,1 +1,0 @@
-ament_cmake_symlink_install_targets("TARGET_FILES" "/work/tello_ros_ws/src/build/ros2_aruco_interfaces/rosidl_generator_py/ros2_aruco_interfaces/libros2_aruco_interfaces__python.so" "TARGETS" "ros2_aruco_interfaces__python" "ARCHIVE_DESTINATION" "lib" "LIBRARY_DESTINATION" "lib" "RUNTIME_DESTINATION" "bin")

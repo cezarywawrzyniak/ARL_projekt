@@ -1,1 +1,0 @@
-/work/tello_ros_ws/src/pkg_g2rr/setup.py

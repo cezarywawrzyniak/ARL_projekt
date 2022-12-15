@@ -1,3 +1,0 @@
-[console_scripts]
-g2rr = pkg_g2rr.g2rr:main
-

@@ -1,1 +1,0 @@
-ament_cmake_symlink_install_targets("TARGET_FILES" "/work/tello_ros_ws/src/build/tello_driver/libtello_driver_node.so" "/work/tello_ros_ws/src/build/tello_driver/libtello_joy_node.so" "TARGETS" "tello_driver_node" "tello_joy_node" "ARCHIVE_DESTINATION" "lib" "LIBRARY_DESTINATION" "lib" "RUNTIME_DESTINATION" "bin")

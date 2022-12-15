@@ -1,3 +1,0 @@
-[console_scripts]
-controller_node = tello_controller.controller:main
-

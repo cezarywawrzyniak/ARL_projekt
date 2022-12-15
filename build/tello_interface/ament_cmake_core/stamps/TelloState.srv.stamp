@@ -1,4 +1,0 @@
-bool request
----
-string state
-uint8 value
