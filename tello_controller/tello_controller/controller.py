@@ -24,7 +24,7 @@ class ControllerNode(Node):
     state = 0
     action_done = False
     pose = Pose()
-    follow_marker = 0
+    follow_marker = 6
 
     def __init__(self):
         super().__init__('controller_node')
@@ -108,29 +108,29 @@ class ControllerNode(Node):
             self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
 
         distance = sqrt(self.pose.position.x * self.pose.position.x + self.pose.position.y * self.pose.position.y + self.pose.position.z * self.pose.position.z)
-        print("DISTANCE:", distance, self.follow_marker)
+        # print("DISTANCE:", distance, self.follow_marker)
+        print("Z:", self.pose.position.z, self.follow_marker)
+        # print("Y:", self.pose.position.y, self.follow_marker)
+        # print("X:", self.pose.position.x, self.follow_marker)
+        # print("________________________________________________________________________________")
 
-        def clip(x: int, lower: int = -100, upper: int = 100) -> int:
-            return max(lower, min(upper, x))
-
-        if distance > 0.1:
+        if distance > 0.15:
             # left_right_velocity
-            # lr_v = int(self.lr_pid.update(cx))
+            lr_v = float(self.lr_pid.update(self.pose.position.x))
             # lr_v = clip(lr_v, -5, 5)
-            lr_v = 0
 
             # forward_backward_velocity
-            fb_v = float(self.fb_pid.update(self.pose.position.z))
+            fb_v = float(self.fb_pid.update(self.pose.position.z - 0.15))
             # fb_v = clip(fb_v, -30, 30)
             # fb_v = 0
 
             # up_down_velocity
-            ud_v = float(self.ud_pid.update(self.pose.position.y))
+            ud_v = -float(self.ud_pid.update(self.pose.position.y))
             # ud_v = clip(ud_v, -20, 20)
             # ud_v = 0
 
             # yaw_velocity
-            yaw_v = float(self.yaw_pid.update(self.pose.position.x))
+            # yaw_v = float(self.yaw_pid.update("GET ANGLE FROM SOMETHING"))
             # yaw_v = clip(yaw_v, -30, 30)
             # yaw_v = 0
         else:
@@ -138,6 +138,7 @@ class ControllerNode(Node):
             fb_v = 0
             ud_v = 0
             yaw_v = 0
+
 
         # if self.pose.position.z > 0.15:
         #     x_vel = 0.1
@@ -163,12 +164,13 @@ class ControllerNode(Node):
         # print(f'rc {x_vel} {y_vel} {z_vel} 0')
         # self.service_request.cmd = f'rc {x_vel} {y_vel} {z_vel} 0'
 
-        print(f'rc {fb_v/5} {0} {0} 0')
-        self.service_request.cmd = f'rc {fb_v/5} {0} {0} 0'
+        # print(f'rc {fb_v/5} {lr_v} {ud_v} 0')
+        print(f'rc {fb_v/2} {lr_v} {ud_v} 0')
+        self.service_request.cmd = f'rc {fb_v/2} {lr_v} {ud_v} 0'
         self.tello_service_client.call_async(self.service_request)
         # time.sleep(0.1)
 
-        if self.pose.position.z < 0.3:
+        if self.pose.position.z < 0.15:
             self.action_done = True
 
         if self.action_done:
