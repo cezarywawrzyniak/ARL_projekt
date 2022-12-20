@@ -52,12 +52,12 @@ class G2r_tf_node(Node):
         self.tf_broadcaster = TransformBroadcaster(self)
         print("Node started!")
         self.tf_static_broadcaster = StaticTransformBroadcaster(self)
-        self.make_transforms()
-        
+        self.make_transforms("map", "world")
+        self.make_transforms("odom", "base_link_1")
 
 
     def odom_callback(self, odom_msg):
-        print("idzie")
+        # print("idzie")
         t = TransformStamped()
 
         t.header.stamp = self.get_clock().now().to_msg()
@@ -78,12 +78,12 @@ class G2r_tf_node(Node):
 
         self.tf_broadcaster.sendTransform(t)
 
-    def make_transforms(self):
+    def make_transforms(self, header_name, child_name):
         t = TransformStamped()
 
         t.header.stamp = self.get_clock().now().to_msg()
-        t.header.frame_id = 'map'
-        t.child_frame_id = "world"
+        t.header.frame_id = header_name
+        t.child_frame_id = child_name
 
         t.transform.translation.x = 0.0
         t.transform.translation.y = 0.0

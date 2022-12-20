@@ -159,9 +159,23 @@ class ArucoNode(rclpy.node.Node):
                 pose.position.x = tvecs[i][0][0]
                 pose.position.y = tvecs[i][0][1]
                 pose.position.z = tvecs[i][0][2]
-
+ 
                 rot_matrix = np.eye(4)
                 rot_matrix[0:3, 0:3] = cv2.Rodrigues(np.array(rvecs[i][0]))[0]
+
+                rot_matrix_new = rot_matrix.copy()
+
+                rot_matrix_new[1,1] = rot_matrix[2,2]
+                rot_matrix_new[1,1] = rot_matrix[2,1] 
+
+                rot_matrix_new[0,1] = rot_matrix[0,2]
+                rot_matrix_new[1,1] = -rot_matrix[1,2] 
+                rot_matrix_new[2,1] = -rot_matrix[2,2]               
+            
+                rot_matrix_new[0,2] = rot_matrix[0,1]
+                rot_matrix_new[1,2] = rot_matrix[1,1] 
+                rot_matrix_new[2,2] = rot_matrix[2,1] 
+
                 quat = transformations.quaternion_from_matrix(rot_matrix)
 
                 pose.orientation.x = quat[0]
@@ -177,7 +191,7 @@ class ArucoNode(rclpy.node.Node):
                 t = TransformStamped()
 
                 t.header.stamp = self.get_clock().now().to_msg()
-                t.header.frame_id = 'odom'
+                t.header.frame_id = 'world'
                 t.child_frame_id = str(marker_id)
 
                 t.transform.translation.x = tvecs[i][0][0]
