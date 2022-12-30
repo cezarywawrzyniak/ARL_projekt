@@ -54,19 +54,31 @@ class ArucoNode(rclpy.node.Node):
         # Declare and read parameters
         self.declare_parameter("marker_size", .0625)
         self.declare_parameter("aruco_dictionary_id", "DICT_6X6_250")
-        # self.declare_parameter("image_topic", "/image_raw")
-        # self.declare_parameter("camera_info_topic", "/camera_info")
-        self.declare_parameter("image_topic", "/drone1/image_raw")
-        self.declare_parameter("camera_info_topic", "/drone1/camera_info")
         self.declare_parameter("camera_frame", None)
+
+
+        # self.declare_parameter("image_topic", "/drone1/image_raw")
+        # self.declare_parameter("camera_info_topic", "/drone1/camera_info")
+        self.declare_parameter("image_topic", "/drone1/image_raw")
+        self.declare_parameter("camera_info_topic", "/drone2/camera_info")
+        self.declare_parameter("poses_publisher", "aruco_poses")
+        self.declare_parameter("markers_publisher", "aruco_markers")
+        self.declare_parameter("images_publisher", "aruco_image")
+
         self.tf_dict = {}
 
         self.marker_size = self.get_parameter("marker_size").get_parameter_value().double_value
         dictionary_id_name = self.get_parameter(
             "aruco_dictionary_id").get_parameter_value().string_value
-        image_topic = self.get_parameter("image_topic").get_parameter_value().string_value
-        info_topic = self.get_parameter("camera_info_topic").get_parameter_value().string_value
+        # image_topic = self.get_parameter("image_topic").get_parameter_value().string_value
+        # info_topic = self.get_parameter("camera_info_topic").get_parameter_value().string_value
         self.camera_frame = self.get_parameter("camera_frame").get_parameter_value().string_value
+
+        self.image_topic = self.get_parameter('image_topic').get_parameter_value().string_value
+        self.camera_info_topic = self.get_parameter('camera_info_topic').get_parameter_value().string_value
+        self.poses_publisher = self.get_parameter('poses_publisher').get_parameter_value().string_value
+        self.markers_publisher = self.get_parameter('markers_publisher').get_parameter_value().string_value
+        self.images_publisher = self.get_parameter('images_publisher').get_parameter_value().string_value
 
         # Make sure we have a valid dictionary id:
         try:
@@ -80,17 +92,17 @@ class ArucoNode(rclpy.node.Node):
 
         # Set up subscriptions
         self.info_sub = self.create_subscription(CameraInfo,
-                                                 info_topic,
+                                                 self.camera_info_topic,
                                                  self.info_callback,
                                                  qos_profile_sensor_data)
 
-        self.create_subscription(Image, image_topic,
+        self.create_subscription(Image, self.image_topic,
                                  self.image_callback, qos_profile_sensor_data)
 
         # Set up publishers
-        self.poses_pub = self.create_publisher(PoseArray, 'aruco_poses', 10)
-        self.markers_pub = self.create_publisher(ArucoMarkers, 'aruco_markers', 10)
-        self.image_pub = self.create_publisher(Image, 'aruco_image', 10)
+        self.poses_pub = self.create_publisher(PoseArray, self.poses_publisher, 10)
+        self.markers_pub = self.create_publisher(ArucoMarkers, self.markers_publisher, 10)
+        self.image_pub = self.create_publisher(Image, self.images_publisher, 10)
 
         # Set up fields for camera parameters
         self.info_msg = None
