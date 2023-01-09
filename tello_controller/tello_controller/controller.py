@@ -36,7 +36,7 @@ class ControllerNode(Node):
         self.drone_topic = self.get_parameter('drone_topic').get_parameter_value().string_value
         self.aruco_topic = self.get_parameter('aruco_topic').get_parameter_value().string_value
 
-        print(self.follow_marker, self.drone_topic, self.aruco_topic)
+        self.get_logger().info(f'{self.follow_marker}, {self.drone_topic}, {self.aruco_topic}')
 
         self.tello_controller = self.create_subscription(Empty, '/tello_controller', self.main_callback, 10)
         self.aruco_sub = self.create_subscription(ArucoMarkers, self.aruco_topic, self.get_markers, 10)

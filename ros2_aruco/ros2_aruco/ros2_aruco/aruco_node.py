@@ -56,11 +56,8 @@ class ArucoNode(rclpy.node.Node):
         self.declare_parameter("aruco_dictionary_id", "DICT_6X6_250")
         self.declare_parameter("camera_frame", None)
 
-
-        # self.declare_parameter("image_topic", "/drone1/image_raw")
-        # self.declare_parameter("camera_info_topic", "/drone1/camera_info")
-        self.declare_parameter("image_topic", "/drone1/image_raw")
-        self.declare_parameter("camera_info_topic", "/drone2/camera_info")
+        self.declare_parameter("image_topic", "/image_raw")
+        self.declare_parameter("camera_info_topic", "/camera_info")
         self.declare_parameter("poses_publisher", "aruco_poses")
         self.declare_parameter("markers_publisher", "aruco_markers")
         self.declare_parameter("images_publisher", "aruco_image")
@@ -70,8 +67,6 @@ class ArucoNode(rclpy.node.Node):
         self.marker_size = self.get_parameter("marker_size").get_parameter_value().double_value
         dictionary_id_name = self.get_parameter(
             "aruco_dictionary_id").get_parameter_value().string_value
-        # image_topic = self.get_parameter("image_topic").get_parameter_value().string_value
-        # info_topic = self.get_parameter("camera_info_topic").get_parameter_value().string_value
         self.camera_frame = self.get_parameter("camera_frame").get_parameter_value().string_value
 
         self.image_topic = self.get_parameter('image_topic').get_parameter_value().string_value
@@ -79,6 +74,8 @@ class ArucoNode(rclpy.node.Node):
         self.poses_publisher = self.get_parameter('poses_publisher').get_parameter_value().string_value
         self.markers_publisher = self.get_parameter('markers_publisher').get_parameter_value().string_value
         self.images_publisher = self.get_parameter('images_publisher').get_parameter_value().string_value
+
+        self.get_logger().info(f'{self.image_topic}, {self.camera_info_topic}, {self.poses_publisher}, {self.markers_publisher}, {self.images_publisher}')
 
         # Make sure we have a valid dictionary id:
         try:
