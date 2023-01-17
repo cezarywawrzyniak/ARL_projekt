@@ -13,23 +13,57 @@ from rclpy.node import Node
 from std_msgs.msg import Empty
 
 from math import sqrt
+from .pid import PID
 
+
+# PID USAGE
+# https://github.com/shijq23/alpha_drone/blob/main/face_track/src/face_track/tracker.py
 
 class ControllerNode(Node):
 
     state = 0
     action_done = False
     pose = Pose()
-    follow_marker = 6
 
     def __init__(self):
         super().__init__('controller_node')
-        self.tello_controller = self.create_subscription(Empty, '/iisrl/tello_controller', self.main_callback, 10)
-        self.aruco_sub = self.create_subscription(ArucoMarkers, '/aruco_markers', self.get_markers, 10)
 
-        self.tello_service_client = self.create_client(TelloAction, '/drone1/tello_action')
+        self.declare_parameter('follow_marker', 0)
+        self.declare_parameter('drone_topic', '/tello_action')
+        self.declare_parameter('aruco_topic', '/aruco_markers')
+
+        self.follow_marker = self.get_parameter('follow_marker').get_parameter_value().integer_value
+        self.drone_topic = self.get_parameter('drone_topic').get_parameter_value().string_value
+        self.aruco_topic = self.get_parameter('aruco_topic').get_parameter_value().string_value
+
+        self.get_logger().info(f'{self.follow_marker}, {self.drone_topic}, {self.aruco_topic}')
+
+        self.tello_controller = self.create_subscription(Empty, '/tello_controller', self.main_callback, 10)
+        self.aruco_sub = self.create_subscription(ArucoMarkers, self.aruco_topic, self.get_markers, 10)
+        self.tello_service_client = self.create_client(TelloAction, self.drone_topic)
         self.service_request = TelloAction.Request()
 
+        self.fb_pid = PID('fb', kP=1.68, kI=0.86, kD=1.68, SP=0.0)
+        # terms for up and down speed control
+        self.ud_pid = PID('ud', kP=16.0, kI=2.02, kD=10.8, SP=0.0)
+        # terms for left and right speed control
+        self.lr_pid = PID('lr', kP=3.0, kI=0.1, kD=2.0, SP=0.0)
+        # terms for yaw speed control
+        # self.yaw_pid = PID('yaw', kP=-0.5, kI=-0.01, kD=-0.1, SP=0.0)
+        self.pid_cv: tuple = (0, 0, 0, 0)
+
+        self.fb_pid.reset()
+        self.lr_pid.reset()
+        self.ud_pid.reset()
+        # self.yaw_pid.reset()
+
+    def parse_params(self):
+        marker_no = rospy.get_param('~aruco_no', 0)
+        topic = rospy.get_param('~topic', '/tello_action')
+        return {
+            'marker_n': marker_no,
+            'topic': topic,
+        }
 
 
     def main_callback(self, msg):
@@ -51,7 +85,7 @@ class ControllerNode(Node):
     def get_markers(self, msg):
         self.marker_list = msg.marker_ids
         self.poses_list = msg.poses 
-        # print("DEJ MARKER")
+
         if self.follow_marker in self.marker_list:
             id = self.marker_list.index(self.follow_marker)
             self.pose = self.poses_list[id]
@@ -86,36 +120,52 @@ class ControllerNode(Node):
             self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
 
         distance = sqrt(self.pose.position.x * self.pose.position.x + self.pose.position.y * self.pose.position.y + self.pose.position.z * self.pose.position.z)
-        print(distance)
+        # print("DISTANCE:", distance, self.follow_marker)
+        print("Z:", self.pose.position.z, self.follow_marker)
 
-        if self.pose.position.z > 0.15:
-            x_vel = 0.1
-        elif self.pose.position.z < - 0.15:
-            x_vel = -0.1
+        if distance > 0.3:
+            # left_right_velocity
+            lr_v = -float(self.lr_pid.update(self.pose.position.x))
+
+            # forward_backward_velocity
+            fb_v = float(self.fb_pid.update(self.pose.position.z - 0.15))
+
+            # up_down_velocity
+            ud_v = -float(self.ud_pid.update(self.pose.position.y))
+
         else:
-            x_vel = 0.0
-
-        if self.pose.position.y > 0.05:
-            z_vel = -0.05
-        elif self.pose.position.y < - 0.05:
-            z_vel = 0.05
-        else:
-            z_vel = 0.0
-
-        if self.pose.position.x > 0.05:
-            y_vel = -0.05
-        elif self.pose.position.x < - 0.05:
-            y_vel = 0.05
-        else:
-            y_vel = 0.0
+            lr_v = 0
+            fb_v = 0
+            ud_v = 0
+            yaw_v = 0
 
 
-        print(f'rc {x_vel} {y_vel} {z_vel} 0')
-        self.service_request.cmd = f'rc {x_vel} {y_vel} {z_vel} 0'
+        # if self.pose.position.z > 0.15:
+        #     x_vel = 0.1
+        # elif self.pose.position.z < - 0.15:
+        #     x_vel = -0.1
+        # else:
+        #     x_vel = 0.0
+
+        # if self.pose.position.y > 0.05:
+        #     z_vel = -0.05
+        # elif self.pose.position.y < - 0.05:
+        #     z_vel = 0.05
+        # else:
+        #     z_vel = 0.0
+
+        # if self.pose.position.x > 0.05:
+        #     y_vel = -0.05
+        # elif self.pose.position.x < - 0.05:
+        #     y_vel = 0.05
+        # else:
+        #     y_vel = 0.0
+
+        print(f'rc {fb_v/2} {lr_v} {ud_v} 0')
+        self.service_request.cmd = f'rc {fb_v} {lr_v} {ud_v} 0'
         self.tello_service_client.call_async(self.service_request)
-        # time.sleep(0.1)
 
-        if self.pose.position.z < 0.3:
+        if self.pose.position.z < 0.15:
             self.action_done = True
 
         if self.action_done:
