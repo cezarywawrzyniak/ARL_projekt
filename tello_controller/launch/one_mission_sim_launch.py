@@ -9,11 +9,11 @@ def generate_launch_description():
             name='controller_node_1',
             parameters=[
             {'follow_markers': '1,3,5,7,15,21'},
-            {'drone_topic': '/tello_action'},
+            {'drone_topic': '/drone1/tello_action'},
             {'aruco_topic': '/aruco_markers_1'},
-            {'position_topic': '/optitrack_topic'},
+            {'position_topic': '/repeater/tello_1/pose/info'},
             {'second_mission': 0},
-            {'dev_in_simulation': 0}
+            {'dev_in_simulation': 1}
         ]
         ),
         Node(
@@ -21,8 +21,8 @@ def generate_launch_description():
             executable='aruco_node',
             name='aruco_node_1',
             parameters=[
-            {'image_topic': '/image_raw'},
-            {'camera_info_topic': '/camera_info'},
+            {'image_topic': '/drone1/image_raw'},
+            {'camera_info_topic': '/drone1/camera_info'},
             {'poses_publisher': 'aruco_poses_1'},
             {'markers_publisher': 'aruco_markers_1'},
             {'images_publisher': 'aruco_image_1'}

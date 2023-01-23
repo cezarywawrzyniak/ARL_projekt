@@ -12,7 +12,7 @@ def generate_launch_description():
             {'drone_topic': '/tello_action'},
             {'aruco_topic': '/aruco_markers_1'},
             {'position_topic': '/optitrack_topic'},
-            {'second_mission': 0},
+            {'second_mission': 1},
             {'dev_in_simulation': 0}
         ]
         ),
