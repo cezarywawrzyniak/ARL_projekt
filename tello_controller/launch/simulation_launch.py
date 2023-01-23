@@ -46,9 +46,5 @@ def generate_launch_description():
             {'markers_publisher': 'aruco_markers_2'},
             {'images_publisher': 'aruco_image_2'}
         ]
-        ),
-        Node(
-            package='pkg_g2rr',
-            executable='g2rr',
         )
     ])

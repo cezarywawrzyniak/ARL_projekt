@@ -42,7 +42,6 @@ class PID(object):
         self.kP: float = kP
         self.kI: float = kI
         self.kD: float = kD
-        self.SP: float = SP
 
         self.cP: float = 0.0
         self.cI: float = 0.0
@@ -67,7 +66,7 @@ class PID(object):
         self.cD = 0.0
         self.cV = 0.0
 
-    def update(self, pv: float) -> float:
+    def update(self, process_variable: float, set_point :float) -> float:
         """ calculate the control value
         :param pv: the process variable, the error = SP - PV (SP is the setpoint, and PV(t) is the process variable)
         :return: the control variable
@@ -78,7 +77,7 @@ class PID(object):
 
         # if deltaTime < PID.EPSILON:
         #     return self.cV
-        error = pv - self.SP
+        error = set_point - process_variable
         # calculate the delta error
         deltaError = error - self.prevError
 
