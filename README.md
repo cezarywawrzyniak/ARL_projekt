@@ -22,6 +22,9 @@ Do uruchomnienia różnych misji w różnych środowiskach służą dopowiednie 
 real_launch.py posiada parametry z laboratorium.
 
 
+
+
+
 Parametry:
 'follow_markers' lista markerów do odwiedzenia  
 'drone_topic' topic tello actin  
@@ -45,6 +48,11 @@ Do uruchomienie symulacji należy:
 ![Drone_goes_BRRRRRRRR](https://user-images.githubusercontent.com/80836780/214401901-26fb3bcc-a1d2-4f25-a639-aa4947aff163.gif)
 
 ![Drone_goes_BRRRRRRRRRR](https://user-images.githubusercontent.com/80836780/214401911-49de9de9-726a-4328-b499-f08aea6962e1.gif)
+
+![Huj_robi_reconesans](https://user-images.githubusercontent.com/80836780/214407703-2c7b2742-95f7-4359-bb54-9bf66765ecd5.gif)
+
+![DRONE_GOES_BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR](https://user-images.githubusercontent.com/80836780/214409421-9fad9e51-d6e7-4979-987f-bae02e1f19fb.gif)
+
 
 Uruchomienie z prawdziwym dronem jest bardzo podobne:
 1. Uruchomić teleopa
