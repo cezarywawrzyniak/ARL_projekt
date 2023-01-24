@@ -5,6 +5,7 @@ from ros2_aruco_interfaces.msg import ArucoMarkers
 from geometry_msgs.msg import PoseArray, Pose
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Empty
+from threading import Thread, Event
 
 import rclpy
 from rclpy.node import Node
@@ -19,11 +20,35 @@ from .pid import PID
 
 # PID USAGE
 # https://github.com/shijq23/alpha_drone/blob/main/face_track/src/face_track/tracker.py
+class TelloTimer(Thread):
+    interval = 1.0
+    running = None
+    func = None
+
+    def __init__(self, interval, event, func):
+        Thread.__init__(self)
+        self.running = event
+        self.interval = interval
+        self.func = func
+
+
+    def run(self):
+        while not self.running.wait(self.interval):
+            self.func()
+
 
 class ControllerNode(Node):
 
     def __init__(self):
         super().__init__('controller_node')
+
+        self.stop_flag = Event()
+        self.tello_timer = TelloTimer(0.1, self.stop_flag, self.tello_signal)
+        self.tello_timer.start()
+
+        self.fb_v = 0.0
+        self.lr_v = 0.0
+        self.ud_v = 0.0
 
         self.declare_parameter('follow_markers', '1,2,3')
         self.declare_parameter('drone_topic', '/tello_action')
@@ -78,6 +103,16 @@ class ControllerNode(Node):
         self.get_logger().info(f'follow_markers: {self.follow_markers}, drone_topic: {self.drone_topic}, aruco_topic: {self.aruco_topic}, position_topic: {self.position_topic}, second_mission: {self.second_mission}, dev_in_simulation: {self.dev_in_simulation}')
 
 
+    def tello_signal(self):
+        self.service_request.cmd = f'rc {self.fb_v} {self.lr_v} {self.ud_v} 0'
+        # self.service_request.cmd = f'rc {int(self.lr_v)} {int(self.fb_v)} 0 0'
+        # self.service_request.cmd = f'rc 0 0 0 0'
+        # self.service_request.cmd = f'rc 0 {int(self.fb_v)} 0 0'
+        self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
+        self.get_logger().info(self.service_request.cmd)
+        self.tello_service_client.call_async(self.service_request)
+
+
     def parse_params(self):
         marker_no = rospy.get_param('~aruco_no', 0)
         topic = rospy.get_param('~topic', '/tello_action')
@@ -97,7 +132,7 @@ class ControllerNode(Node):
             self.pos_y = msg.position.y
             self.pos_z = msg.position.z
 
-        self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
+        # self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
 
         self.state_machine()
 
@@ -198,24 +233,24 @@ class ControllerNode(Node):
         marker = self.coord_list[self.fly_around_index]
 
         dst = np.linalg.norm(np.array(drone)-np.array(marker))
-        self.get_logger().info(f'DISTANCE TO TARGET, {dst}')
+        # self.get_logger().info(f'DISTANCE TO TARGET, {dst}')
 
         # forward_backward_velocity
-        fb_v = float(self.fb_pid.update(process_variable=self.pos_x, set_point=marker[0]))
-        fb_v = self.max_value(fb_v)
+        self.fb_v = float(self.fb_pid.update(process_variable=self.pos_x, set_point=marker[0]))
+        self.fb_v = self.max_value(self.fb_v)
 
         # left_right_velocity
-        lr_v = float(self.lr_pid.update(process_variable=self.pos_y, set_point=marker[1]))
-        lr_v = self.max_value(lr_v)
+        self.lr_v = float(self.lr_pid.update(process_variable=self.pos_y, set_point=marker[1]))
+        self.lr_v = self.max_value(self.lr_v)
 
         # up_down_velocity
-        ud_v = float(self.ud_pid.update(process_variable=self.pos_z, set_point=marker[2]))
-        ud_v = self.max_value(ud_v)
+        self.ud_v = float(self.ud_pid.update(process_variable=self.pos_z, set_point=marker[2]))
+        self.ud_v = self.max_value(self.ud_v)
 
 
-        self.get_logger().info(f'rc {fb_v} {lr_v} {ud_v}')
-        self.service_request.cmd = f'rc {fb_v} {lr_v} {ud_v} 0'
-        self.tello_service_client.call_async(self.service_request)
+        # self.get_logger().info(f'rc {fb_v} {lr_v} {ud_v}')
+        # self.service_request.cmd = f'rc {fb_v} {lr_v} {ud_v} 0'
+        # self.tello_service_client.call_async(self.service_request)
 
         if dst < 0.3:
             self.get_logger().info(f'TARGET {self.fly_around_index} REACHED')
@@ -240,29 +275,29 @@ class ControllerNode(Node):
         marker = self.real_coord_list[self.fly_aruco_index]
 
         dst = np.linalg.norm(np.array(drone)-np.array(marker))
-        self.get_logger().info(f'DISTANCE TO MARKER: {dst}')
+        # self.get_logger().info(f'DISTANCE TO MARKER: {dst}')
 
         # forward_backward_velocity
-        fb_v = float(self.fb_pid.update(process_variable=self.pos_x, set_point=marker[0]))
-        fb_v = self.max_value(fb_v)
+        self.fb_v = float(self.fb_pid.update(process_variable=self.pos_x, set_point=marker[0]))
+        self.fb_v = self.max_value(self.fb_v)
 
         # left_right_velocity
-        lr_v = float(self.lr_pid.update(process_variable=self.pos_y, set_point=marker[1]))
-        lr_v = self.max_value(lr_v)
+        self.lr_v = float(self.lr_pid.update(process_variable=self.pos_y, set_point=marker[1]))
+        self.lr_v = self.max_value(self.lr_v)
 
         # up_down_velocity
-        ud_v = float(self.ud_pid.update(process_variable=self.pos_z, set_point=marker[2]))
-        ud_v = self.max_value(ud_v)
+        self.ud_v = float(self.ud_pid.update(process_variable=self.pos_z, set_point=marker[2]))
+        self.ud_v = self.max_value(self.ud_v)
 
 
-        self.get_logger().info(f'rc {fb_v} {lr_v} {ud_v}')
-        self.service_request.cmd = f'rc {fb_v} {lr_v} {ud_v} 0'
-        self.tello_service_client.call_async(self.service_request)
+        # self.service_request.cmd = f'rc {fb_v} {lr_v} {ud_v} 0'
+        # self.get_logger().info(self.service_request.cmd)
+        # self.tello_service_client.call_async(self.service_request)
 
-        if dst < 0.05:
+        if dst < 0.15:
             self.get_logger().info(f'MARKER {self.fly_aruco_index} REACHED')
             self.fly_aruco_index += 1
-            if self.fly_aruco_index >= len(self.follow_list) + 1:
+            if self.fly_aruco_index >= len(self.real_coord_list):
                 self.second_mission_done = True
                 self.get_logger().info('LAST MARKER REACHED')
 
