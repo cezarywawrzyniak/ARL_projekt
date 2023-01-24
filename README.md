@@ -49,11 +49,13 @@ Uruchomienie z prawdziwym dronem jest bardzo podobne:
 2. Połączyć się z optitrackiem
 3. Uruchomić launcha wchodząc w folder ```tello_controller/launch``` a następnie ```ros2 launch <nazwa launcha>```
 
-
+Markery aruco zostały w większości wygenerowane samodzielnie.
+Zostały również stworzone mapy do łatwiejszego odtworzenia ustawniena markerów w aruco.
+![Map1](https://user-images.githubusercontent.com/80836780/214316930-7ff73b32-a685-42ea-91d5-53411110b861.png)
 
 
 ## Użyte paczki
 Do sterowania dronem:
-https://github.com/clydemcqueen/tello_ros
-Już w repo
+https://github.com/clydemcqueen/tello_ros  
+Już w repo  
 https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco
