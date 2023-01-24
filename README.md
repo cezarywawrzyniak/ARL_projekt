@@ -52,6 +52,8 @@ Markery aruco zostały w większości wygenerowane samodzielnie.
 Zostały również stworzone mapy do łatwiejszego odtworzenia ustawniena markerów w aruco.
 ![Map1](https://user-images.githubusercontent.com/80836780/214316930-7ff73b32-a685-42ea-91d5-53411110b861.png)
 
+Założenie było aby wykorzystać tfy do ustalenia pozycji markerów oraz drona, jednak nie udało się tego pomysłu zfinalizować.
+![tfy](https://github.com/czarkoman/ARL_projekt/blob/main/misc/Screenshot_from_2023-01-10_21-17-32.png)
 
 ## Użyte paczki
 Do sterowania dronem:
