@@ -27,6 +27,9 @@ BRRRRRR
 
 
 
+![Map1](https://user-images.githubusercontent.com/80836780/214316930-7ff73b32-a685-42ea-91d5-53411110b861.png)
+
+
 Parametry:
 'follow_markers' lista markerów do odwiedzenia
 'drone_topic' topic tello actin
