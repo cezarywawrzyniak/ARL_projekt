@@ -8,6 +8,10 @@ Sterowanie odbywa się za pomocą controler_node'a z paczki tello_controller z u
 Do uruchomnienia różnycumh misji w różnych środowiskach służą dopowiednie pliki launch.
 real_launch.py posiada parametry z laboratorium.
 
+![Dron_robi_BRR](https://user-images.githubusercontent.com/80836780/214311925-949688f4-ebd4-4a5f-831e-ee2a5fb92a5d.gif)
+
+
+
 Parametry:
 'follow_markers' lista markerów do odwiedzenia
 'drone_topic' topic tello actin
