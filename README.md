@@ -1,5 +1,4 @@
-# ARL_projekt
-## Autonomous Flying Robots project 
+# Autonomiczne Roboty Latające: projekt
 Cezary Wawrzyniak, Jakub Sieklucki, Jakub Marciniak
 
 ## Założenia projektu  
