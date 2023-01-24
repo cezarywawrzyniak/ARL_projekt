@@ -37,6 +37,13 @@ Do uruchomienie symulacji należy:
 2. Włączyć G2RR poleceniem ```ros2 run G2RR g2rr tello_1 ```
 3. Uruchomić launcha wchodząc w folder ```tello_controller/launch``` a następnie ```ros2 launch <nazwa launcha>```
 
+![Drone_goes_BRRRR](https://user-images.githubusercontent.com/80836780/214314146-0d52bc7b-6ce6-48a4-8c8f-d90281ab3dc3.gif)
+
+![Drone_goes_BRRRRRR](https://user-images.githubusercontent.com/80836780/214315608-816f0503-9ed1-4b3c-9d14-6c07749dff2d.gif)
+
+![2_Drones_goes_BRR](https://user-images.githubusercontent.com/80836780/214315813-814aed4c-c7f6-4f30-9831-48c51d6bbd7b.gif)
+
+
 Uruchomienie z prawdziwym dronem jest bardzo podobne:
 1. Uruchomić teleopa
 2. Połączyć się z optitrackiem
