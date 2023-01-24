@@ -42,6 +42,9 @@ Do uruchomienie symulacji należy:
 
 ![2_Drones_goes_BRR](https://user-images.githubusercontent.com/80836780/214315813-814aed4c-c7f6-4f30-9831-48c51d6bbd7b.gif)
 
+![Drone_goes_BRRRRRRRR](https://user-images.githubusercontent.com/80836780/214401901-26fb3bcc-a1d2-4f25-a639-aa4947aff163.gif)
+
+![Drone_goes_BRRRRRRRRRR](https://user-images.githubusercontent.com/80836780/214401911-49de9de9-726a-4328-b499-f08aea6962e1.gif)
 
 Uruchomienie z prawdziwym dronem jest bardzo podobne:
 1. Uruchomić teleopa
