@@ -44,6 +44,10 @@ from ros2_aruco_interfaces.msg import ArucoMarkers
 
 from tf2_ros import TransformBroadcaster
 from geometry_msgs.msg import TransformStamped
+from tf2_ros.buffer import Buffer
+import yaml
+import time
+from tf2_ros import TransformListener
 
 
 class ArucoNode(rclpy.node.Node):
@@ -106,8 +110,11 @@ class ArucoNode(rclpy.node.Node):
         self.info_msg = info_msg
         self.intrinsic_mat = np.reshape(np.array(self.info_msg.k), (3, 3))
         self.distortion = np.array(self.info_msg.d)
+        self.distortion = np.array([-0.033458, 0.105152, 0.001256, -0.006647, 0.000000])
         # Assume that camera parameters will remain the same...
         self.destroy_subscription(self.info_sub)
+        # print(self.info_msg.d) 
+        print(self.intrinsic_mat)
 
     def image_callback(self, img_msg):
 
@@ -165,16 +172,17 @@ class ArucoNode(rclpy.node.Node):
 
                 rot_matrix_new = rot_matrix.copy()
 
-                rot_matrix_new[1,1] = rot_matrix[2,2]
-                rot_matrix_new[1,1] = rot_matrix[2,1] 
+                # rot_matrix_new[1,1] = rot_matrix[2,2]
+                # rot_matrix_new[1,1] = rot_matrix[2,1] 
 
-                rot_matrix_new[0,1] = rot_matrix[0,2]
+                rot_matrix_new[0,1] = -rot_matrix[0,2]
                 rot_matrix_new[1,1] = -rot_matrix[1,2] 
                 rot_matrix_new[2,1] = -rot_matrix[2,2]               
             
                 rot_matrix_new[0,2] = rot_matrix[0,1]
                 rot_matrix_new[1,2] = rot_matrix[1,1] 
                 rot_matrix_new[2,2] = rot_matrix[2,1] 
+                
 
                 quat = transformations.quaternion_from_matrix(rot_matrix)
 
@@ -189,26 +197,52 @@ class ArucoNode(rclpy.node.Node):
 
                 #tf 
                 t = TransformStamped()
+                
+                
+                
 
                 t.header.stamp = self.get_clock().now().to_msg()
-                t.header.frame_id = 'world'
+                t.header.frame_id = 'camera_link_1'
                 t.child_frame_id = str(marker_id)
 
-                t.transform.translation.x = tvecs[i][0][0]
-                t.transform.translation.y = tvecs[i][0][1]
-                t.transform.translation.z = tvecs[i][0][2]
-          
+                t.transform.translation.x = tvecs[i][0][0]*3
+                t.transform.translation.y = tvecs[i][0][1]*3
+                t.transform.translation.z = tvecs[i][0][2]*3
+
+                # print("x",t.transform.translation.x)
+                # print("y",t.transform.translation.y)
+                # print("z",t.transform.translation.z)
+
                 t.transform.rotation.x = quat[0]
                 t.transform.rotation.y = quat[1]
-                t.transform.rotation.z = quat[2]
+                t.transform.rotation.z = quat[2] 
                 t.transform.rotation.w = quat[3]
 
                 self.tf_dict[marker_id[0]] = t
+
+                
             
+
             for marker_id, tf in self.tf_dict.items():
+                
                 if not marker_id in marker_ids.flatten():
                     tf.header.stamp = self.get_clock().now().to_msg()
-                self.tf_broadcaster.sendTransform(tf)
+                self.tf_broadcaster.sendTransform(tf)       
+          
+
+
+
+            # frames_dict = yaml.safe_load(t_world.all_frames_as_yaml())
+            # print(frames_dict)
+            # print(list(frames_dict.keys())) 
+                # t_world.lookup_transform(tf.child_frame_id, "world", rclpy.duration.Duration(seconds=5))
+
+            
+            # t_world.lookup_transform(tf.child_frame_id, "world", rclpy.duration.Duration(seconds=5))
+
+
+            
+            
 
             self.poses_pub.publish(pose_array)
             self.markers_pub.publish(markers)
