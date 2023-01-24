@@ -51,6 +51,10 @@ Do uruchomienie symulacji należy:
 
 ![Huj_robi_reconesans](https://user-images.githubusercontent.com/80836780/214407703-2c7b2742-95f7-4359-bb54-9bf66765ecd5.gif)
 
+
+AAAAAAAAAAAAAAAAAAa
+
+
 ![DRONE_GOES_BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR](https://user-images.githubusercontent.com/80836780/214409421-9fad9e51-d6e7-4979-987f-bae02e1f19fb.gif)
 
 
