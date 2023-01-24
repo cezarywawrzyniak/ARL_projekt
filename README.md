@@ -8,7 +8,7 @@ Sterowanie odbywa się za pomocą controler_node'a z paczki tello_controller z u
 Do uruchomnienia różnycumh misji w różnych środowiskach służą dopowiednie pliki launch.
 real_launch.py posiada parametry z laboratorium.
 
-![Dron_goes_BRR](https://user-images.githubusercontent.com/80836780/214312763-63d8d503-a1b0-4505-b3c3-7c2f42312d47.gif)
+![Drone_goes_BRR](https://user-images.githubusercontent.com/80836780/214313128-f7b7615b-b101-47d1-9ecd-0913d7fe85bf.gif)
 
 
 Parametry:
