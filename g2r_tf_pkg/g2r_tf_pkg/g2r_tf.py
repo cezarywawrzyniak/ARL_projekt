@@ -18,6 +18,8 @@ from math import sqrt
 from tf2_ros import TransformBroadcaster
 from geometry_msgs.msg import TransformStamped
 from nav_msgs.msg import Odometry
+from tf2_ros.buffer import Buffer
+from tf2_ros import TransformListener
 
 
 def quaternion_from_euler(ai, aj, ak):
@@ -52,8 +54,10 @@ class G2r_tf_node(Node):
         self.tf_broadcaster = TransformBroadcaster(self)
         print("Node started!")
         self.tf_static_broadcaster = StaticTransformBroadcaster(self)
-        self.make_transforms("map", "world")
-        self.make_transforms("odom", "base_link_1")
+        self.make_transforms("map", "world",0,0,0)
+        # self.make_transforms("world", "odom",0,0,0)  
+        self.make_transforms("odom", "base_link_1",(np.pi/2),np.pi,(np.pi/2))
+        
 
 
     def odom_callback(self, odom_msg):
@@ -78,7 +82,8 @@ class G2r_tf_node(Node):
 
         self.tf_broadcaster.sendTransform(t)
 
-    def make_transforms(self, header_name, child_name):
+
+    def make_transforms(self, header_name, child_name, x, y,z):
         t = TransformStamped()
 
         t.header.stamp = self.get_clock().now().to_msg()
@@ -88,7 +93,7 @@ class G2r_tf_node(Node):
         t.transform.translation.x = 0.0
         t.transform.translation.y = 0.0
         t.transform.translation.z = 0.0
-        quat = quaternion_from_euler(0.0, 0.0, 0.0)
+        quat = quaternion_from_euler(x, y, z)
         t.transform.rotation.x = quat[0]
         t.transform.rotation.y = quat[1]
         t.transform.rotation.z = quat[2]
