@@ -1,5 +1,5 @@
 # Autonomiczne Roboty Latające: projekt
-Cezary Wawrzyniak, Jakub Sieklucki, Jakub Marciniak
+Cezary Wawrzyniak 141131, Jakub Sieklucki 140310, Jakub Marciniak 140278
 
 ## Założenia projektu  
 Projekt zakładał sterowanie lotem dornów z użyciem markerów aruco. 
