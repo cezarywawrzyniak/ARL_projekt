@@ -68,7 +68,12 @@ Założenie było aby wykorzystać tfy do ustalenia pozycji markerów oraz drona
 ![tfy](https://github.com/czarkoman/ARL_projekt/blob/main/misc/Screenshot_from_2023-01-10_21-17-32.png)
 
 ## Użyte paczki
-Do sterowania dronem:
-https://github.com/clydemcqueen/tello_ros  
+Do sterowania dronem:  
+https://github.com/clydemcqueen/tello_ros    
 Już w repo  
 https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco
+
+## Użyte pakiety:  
+Python 3.8.10
+ROS2 Foxy
+
