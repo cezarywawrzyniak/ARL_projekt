@@ -27,7 +27,7 @@ real_launch.py posiada parametry z laboratorium.
 
 Parametry:
 'follow_markers' lista markerów do odwiedzenia  
-'drone_topic' topic tello actin  
+'drone_topic' topic tello action
 'aruco_topic' topic na którym publikowane są paramtery widzianych aruco  
 'position_topic' topic zwracający pozycję (G2RR lub optitrack)  
 'second_mission' zmienna true/false czy dron ma wykonać drugą misję  
@@ -74,7 +74,7 @@ Już w repo
 https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco
 
 ## Użyte pakiety:  
-Python 3.8.10
-Numpy 1.17.4
-ROS2 Foxy
+Python 3.8.10  
+Numpy 1.17.4  
+ROS2 Foxy  
 
