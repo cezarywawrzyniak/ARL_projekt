@@ -75,5 +75,6 @@ https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco
 
 ## Użyte pakiety:  
 Python 3.8.10
+Numpy 1.17.4
 ROS2 Foxy
 
