@@ -2,7 +2,7 @@ from tello_msgs.srv import TelloAction
 from tello_msgs.msg import TelloResponse
 from tello_interface.srv import TelloState
 from ros2_aruco_interfaces.msg import ArucoMarkers
-from geometry_msgs.msg import PoseArray, Pose
+from geometry_msgs.msg import PoseArray, Pose, Twist
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Empty
 from threading import Thread, Event
@@ -41,6 +41,8 @@ class ControllerNode(Node):
 
     def __init__(self):
         super().__init__('controller_node')
+        self.get_logger().info(f'ZZZ')
+
 
         self.stop_flag = Event()
         self.tello_timer = TelloTimer(0.1, self.stop_flag, self.tello_signal)
@@ -70,6 +72,9 @@ class ControllerNode(Node):
             self.position_sub = self.create_subscription(Odometry, self.position_topic, self.position_callback, 10)
         else:
             self.position_sub = self.create_subscription(Pose, self.position_topic, self.position_callback, 10)
+
+        # self.twist_pub = self.create_publisher(Twist, '/drone1/cmd_vel', 10)
+        self.twist_pub = self.create_publisher(Twist, '/cmd_vel', 10)
 
 
         self.tello_service_client = self.create_client(TelloAction, self.drone_topic)
@@ -104,12 +109,23 @@ class ControllerNode(Node):
 
 
     def tello_signal(self):
-        self.service_request.cmd = f'rc {self.fb_v} {self.lr_v} {self.ud_v} 0'
-        # self.service_request.cmd = f'rc {int(self.lr_v)} {int(self.fb_v)} 0 0'
+        # self.service_request.cmd = f'rc {self.fb_v} {self.lr_v} {self.ud_v} 0'
+        self.service_request.cmd = f'rc {int(self.lr_v)} {int(self.fb_v)} {int(self.ud_v)} 0'
         # self.service_request.cmd = f'rc 0 0 0 0'
         # self.service_request.cmd = f'rc 0 {int(self.fb_v)} 0 0'
-        self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
+        # self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
         self.get_logger().info(self.service_request.cmd)
+
+        self.twist_cmd = Twist()
+        # self.twist_cmd.linear.x = float(self.fb_v)
+        # self.twist_cmd.linear.y = float(self.lr_v)
+        # self.twist_cmd.linear.x = float(self.lr_v)
+        # self.twist_cmd.linear.y = float(self.fb_v)
+        # self.twist_cmd.linear.z = float(self.ud_v)
+        # self.get_logger().info(f'{self.twist_cmd}')
+
+        
+        # self.twist_pub.publish(self.twist_cmd)
         self.tello_service_client.call_async(self.service_request)
 
 
@@ -131,6 +147,10 @@ class ControllerNode(Node):
             self.pos_x = msg.position.x
             self.pos_y = msg.position.y
             self.pos_z = msg.position.z
+            # self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
+            self.get_logger().info(f'GETTING POSITION: {msg.position}')
+
+
 
         # self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
 
