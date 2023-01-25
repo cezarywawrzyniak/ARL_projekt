@@ -36,7 +36,7 @@ Parametry:
 
 Do uruchomienie symulacji należy:  
 1. Uruchomić skrytpy start_tello w katalaogu vm_scripts
-2. Włączyć G2RR poleceniem ```ros2 run G2RR g2rr tello_1 ```
+2. Włączyć G2RR poleceniem ```ros2 run pkg_g2rr g2rr tello_1 ```
 3. Uruchomić launcha wchodząc w folder ```tello_controller/launch``` a następnie ```ros2 launch <nazwa launcha>```
 
 ![Drone_goes_BRRRR](https://user-images.githubusercontent.com/80836780/214314146-0d52bc7b-6ce6-48a4-8c8f-d90281ab3dc3.gif)
