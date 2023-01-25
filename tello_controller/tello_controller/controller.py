@@ -41,7 +41,7 @@ class ControllerNode(Node):
 
     def __init__(self):
         super().__init__('controller_node')
-        self.get_logger().info(f'ZZZ')
+        self.get_logger().info(f'URRRRRRRRRRR')
 
 
         self.stop_flag = Event()
@@ -110,10 +110,11 @@ class ControllerNode(Node):
 
     def tello_signal(self):
         # self.service_request.cmd = f'rc {self.fb_v} {self.lr_v} {self.ud_v} 0'
-        self.service_request.cmd = f'rc {int(self.lr_v)} {int(self.fb_v)} {int(self.ud_v)} 0'
+        # self.service_request.cmd = f'rc {int(self.lr_v)} {int(self.fb_v)} {int(self.ud_v)} 0'
+        self.service_request.cmd = f'rc 0 {int(self.fb_v)} 0 0'
         # self.service_request.cmd = f'rc 0 0 0 0'
         # self.service_request.cmd = f'rc 0 {int(self.fb_v)} 0 0'
-        # self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
+        self.get_logger().info(f'TELLO SIGNAL RZADKIE : ({self.pos_x}, {self.pos_y}, {self.pos_z})')
         self.get_logger().info(self.service_request.cmd)
 
         self.twist_cmd = Twist()
@@ -143,12 +144,16 @@ class ControllerNode(Node):
             self.pos_x = msg.pose.pose.position.x
             self.pos_y = msg.pose.pose.position.y
             self.pos_z = msg.pose.pose.position.z
+            self.get_logger().info(f'GETTING MSG: {msg.pose.pose.position}')
+            self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
+
         else:
             self.pos_x = msg.position.x
             self.pos_y = msg.position.y
             self.pos_z = msg.position.z
-            # self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
-            self.get_logger().info(f'GETTING POSITION: {msg.position}')
+            self.get_logger().info(f'GETTING MSG: {msg.position}')
+            self.get_logger().info(f'GETTING POSITION: ({self.pos_x}, {self.pos_y}, {self.pos_z})')
+            #  self.get_logger().info(f'GETTING POSITION: {msg.position}')
 
 
 
@@ -249,30 +254,42 @@ class ControllerNode(Node):
         while not self.tello_service_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("Oczekuje na dostepnosc uslugi Tello...")
 
-        drone = (self.pos_x, self.pos_y, self.pos_z)
+        pls_x = self.pos_x
+        pls_y = self.pos_y
+        pls_z = self.pos_z
+
+        self.get_logger().info(f'PROSZE PLS: ({pls_x}, {pls_y}, {pls_z})')
+
+        drone = (pls_x, pls_y, pls_z)
         marker = self.coord_list[self.fly_around_index]
 
-        dst = np.linalg.norm(np.array(drone)-np.array(marker))
-        # self.get_logger().info(f'DISTANCE TO TARGET, {dst}')
+        # dst = np.linalg.norm(np.array(drone)-np.array(marker))
+        dst = drone[0] - marker[0]
+        self.get_logger().info(f'DISTANCE TO TARGET, {dst}, {drone[0]}, {marker[0]}')
 
         # forward_backward_velocity
-        self.fb_v = float(self.fb_pid.update(process_variable=self.pos_x, set_point=marker[0]))
-        self.fb_v = self.max_value(self.fb_v)
+        if abs(dst) < 0.1:
+            self.fb_v = 0.0
+        else:
+            self.fb_v = 15.0
+        # self.fb_v = float(self.fb_pid.update(process_variable=drone[0], set_point=marker[0]))
+        # self.fb_v = self.max_value(self.fb_v)
 
         # left_right_velocity
-        self.lr_v = float(self.lr_pid.update(process_variable=self.pos_y, set_point=marker[1]))
+        self.lr_v = float(self.lr_pid.update(process_variable=drone[1], set_point=marker[1]))
         self.lr_v = self.max_value(self.lr_v)
 
         # up_down_velocity
-        self.ud_v = float(self.ud_pid.update(process_variable=self.pos_z, set_point=marker[2]))
+        self.ud_v = float(self.ud_pid.update(process_variable=drone[2], set_point=marker[2]))
         self.ud_v = self.max_value(self.ud_v)
 
 
-        # self.get_logger().info(f'rc {fb_v} {lr_v} {ud_v}')
+        # self.get_logger().info(f'rc {self.fb_v} {self.lr_v} {self.ud_v}')
+        self.get_logger().info(f'rc {self.fb_v}')
         # self.service_request.cmd = f'rc {fb_v} {lr_v} {ud_v} 0'
         # self.tello_service_client.call_async(self.service_request)
 
-        if dst < 0.3:
+        if abs(self.fb_v) < 1:
             self.get_logger().info(f'TARGET {self.fly_around_index} REACHED')
             self.fly_around_index += 1
             if self.fly_around_index >= len(self.follow_list):
@@ -291,22 +308,26 @@ class ControllerNode(Node):
             self.choose_marker()
             self.got_coordinates = True
 
-        drone = (self.pos_x, self.pos_y, self.pos_z)
+        pls_x = self.pos_x
+        pls_y = self.pos_y
+        pls_z = self.pos_z
+
+        drone = (pls_x, pls_y, pls_z)
         marker = self.real_coord_list[self.fly_aruco_index]
 
         dst = np.linalg.norm(np.array(drone)-np.array(marker))
         # self.get_logger().info(f'DISTANCE TO MARKER: {dst}')
 
         # forward_backward_velocity
-        self.fb_v = float(self.fb_pid.update(process_variable=self.pos_x, set_point=marker[0]))
+        self.fb_v = float(self.fb_pid.update(process_variable=drone[0], set_point=marker[0]))
         self.fb_v = self.max_value(self.fb_v)
 
         # left_right_velocity
-        self.lr_v = float(self.lr_pid.update(process_variable=self.pos_y, set_point=marker[1]))
+        self.lr_v = float(self.lr_pid.update(process_variable=drone[1], set_point=marker[1]))
         self.lr_v = self.max_value(self.lr_v)
 
         # up_down_velocity
-        self.ud_v = float(self.ud_pid.update(process_variable=self.pos_z, set_point=marker[2]))
+        self.ud_v = float(self.ud_pid.update(process_variable=drone[2], set_point=marker[2]))
         self.ud_v = self.max_value(self.ud_v)
 
 
@@ -334,25 +355,25 @@ class ControllerNode(Node):
         self.real_marker_list = msg.marker_ids
         self.real_poses_list = msg.poses 
 
-    def choose_marker(self):
-        for marker_no in self.follow_list:
-            if marker_no in self.real_marker_list:
-                list_id = self.real_marker_list.index(marker_no)
+    # def choose_marker(self):
+    #     for marker_no in self.follow_list:
+    #         if marker_no in self.real_marker_list:
+    #             list_id = self.real_marker_list.index(marker_no)
 
-                marker_pose = self.real_poses_list[list_id]
+    #             marker_pose = self.real_poses_list[list_id]
 
-                if self.dev_in_simulation == 1:
-                    x = self.pos_x + (marker_pose.position.z*2.5) - 1
-                    y = self.pos_y + (-marker_pose.position.x*3)
-                    z = self.pos_z + (-marker_pose.position.y*3)
-                else:
-                    x = self.pos_x + (marker_pose.position.z) - 1
-                    y = self.pos_y + (-marker_pose.position.x)
-                    z = self.pos_z + (-marker_pose.position.y)
+    #             if self.dev_in_simulation == 1:
+    #                 x = self.pos_x + (marker_pose.position.z*2.5) - 1
+    #                 y = self.pos_y + (-marker_pose.position.x*3)
+    #                 z = self.pos_z + (-marker_pose.position.y*3)
+    #             else:
+    #                 x = self.pos_x + (marker_pose.position.z) - 1
+    #                 y = self.pos_y + (-marker_pose.position.x)
+    #                 z = self.pos_z + (-marker_pose.position.y)
 
-                self.real_coord_list.append((x, y, z))
+    #             self.real_coord_list.append((x, y, z))
 
-        self.real_coord_list.append((0, 0, 1))
+    #     self.real_coord_list.append((0, 0, 1))
         
 
         
