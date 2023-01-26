@@ -3,10 +3,10 @@ Cezary Wawrzyniak 141131, Jakub Sieklucki 140310, Jakub Marciniak 140278
 
 ## Założenia projektu  
 Projekt zakładał sterowanie lotem dronów z użyciem markerów aruco. 
-Markery byłyby umieszcone na ziemi niestety z powodu kąta widzenia kamery musiało to zostać zmienione. 
+Markery byłyby umieszczone na ziemi niestety z powodu kąta widzenia kamery musiało to zostać zmienione na pionowe mocowanie. 
 
 ## Zadania wykonane
-Dron w symulacji porusza się w zadanej kolejnośći pomiędzy zadanymi markerami aruco które wcześniej widział.
+Dron w symulacji porusza się w zadanej kolejnośći pomiędzy wyznaczonymi markerami aruco które wcześniej widział.
 
 
 ## Jak użyć paczki
@@ -22,7 +22,7 @@ W niej zapisane jest całe sterowanie dronem
 
 ![Dron_goes_BRR](https://user-images.githubusercontent.com/80836780/214312763-63d8d503-a1b0-4505-b3c3-7c2f42312d47.gif)
 
-Do uruchomnienia różnych misji w różnych środowiskach służą dopowiednie pliki launch.
+Do uruchomnienia różnych misji w wybranych środowiskach służą dopowiednie pliki launch.
 real_launch.py posiada parametry do laboratorium.
 
 Zaprogramowane są 2 misje. Pierwsza z nich uruchamia latanie po trajektorii kwadratu w celu sprawdzenia poprawności działania, a druga odpowiada za latanie pomiędzy markerami Aruco. W plikach launch znajduje się parametr dyktujący czy uruchomiona zostanie tylko pierwsza misja czy całość.
@@ -31,11 +31,11 @@ Zaprogramowane są 2 misje. Pierwsza z nich uruchamia latanie po trajektorii kwa
 
 Parametry:
 'follow_markers' lista markerów do odwiedzenia  
-'drone_topic' topic tello action
+'drone_topic' topic tello_action
 'aruco_topic' topic na którym publikowane są paramtery widzianych aruco  
 'position_topic' topic zwracający pozycję (G2RR lub optitrack)  
-'second_mission' zmienna true/false czy dron ma wykonać drugą misję  
-'dev_in_simulation' zmienna true/false czy odbywa się w symulacji  
+'second_mission' zmienna 1/0 czy dron ma wykonać drugą misję  
+'dev_in_simulation' zmienna 1/0 czy uruchomienie odbywa się w symulacji  
 
 
 Do uruchomienie symulacji należy:  
