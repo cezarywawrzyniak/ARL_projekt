@@ -48,6 +48,7 @@ Do uruchomienie symulacji należy:
 ![Drone_goes_BRRRRRR](https://user-images.githubusercontent.com/80836780/214315608-816f0503-9ed1-4b3c-9d14-6c07749dff2d.gif)
 
 Implementacja sterowania dwoma dronami musiała korzystać bezpośrednio z danych pobieranych z kamery ze względu na problemy śledzenia pozycji dwóch jednostek.
+
 ![2_Drones_goes_BRR](https://user-images.githubusercontent.com/80836780/214315813-814aed4c-c7f6-4f30-9831-48c51d6bbd7b.gif)
 
 ![Drone_goes_BRRRRRRRR](https://user-images.githubusercontent.com/80836780/214401901-26fb3bcc-a1d2-4f25-a639-aa4947aff163.gif)
