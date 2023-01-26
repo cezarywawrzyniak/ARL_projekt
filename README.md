@@ -2,7 +2,7 @@
 Cezary Wawrzyniak 141131, Jakub Sieklucki 140310, Jakub Marciniak 140278
 
 ## Założenia projektu  
-Projekt zakładał sterowanie lotem dornów z użyciem markerów aruco. 
+Projekt zakładał sterowanie lotem dronów z użyciem markerów aruco. 
 Markery byłyby umieszcone na ziemi niestety z powodu kąta widzenia kamery musiało to zostać zmienione. 
 
 ## Zadania wykonane
@@ -11,7 +11,7 @@ Dron w symulacji porusza się w zadanej kolejnośći pomiędzy zadanymi markeram
 
 ## Jak użyć paczki
 Należy skożystać z paczki tello_ros (https://github.com/clydemcqueen/tello_ros) i postąpić z jej tutorialem
-a następnie sklonować tę paczkę do katalogu src.
+a następnie sklonować tę paczkę do katalogu src. Całość została uruchomiona w Dockerze, który także powstał według instrukcji z tello_ros.
 
 
 ## Działanie
@@ -23,9 +23,9 @@ W niej zapisane jest całe sterowanie dronem
 ![Dron_goes_BRR](https://user-images.githubusercontent.com/80836780/214312763-63d8d503-a1b0-4505-b3c3-7c2f42312d47.gif)
 
 Do uruchomnienia różnych misji w różnych środowiskach służą dopowiednie pliki launch.
-real_launch.py posiada parametry z laboratorium.
+real_launch.py posiada parametry do laboratorium.
 
-
+Zaprogramowane są 2 misje. Pierwsza z nich uruchamia latanie po trajektorii kwadratu w celu sprawdzenia poprawności działania, a druga odpowiada za latanie pomiędzy markerami Aruco. W plikach launch znajduje się parametr dyktujący czy uruchomiona zostanie tylko pierwsza misja czy całość.
 
 
 
@@ -39,7 +39,7 @@ Parametry:
 
 
 Do uruchomienie symulacji należy:  
-1. Uruchomić skrytpy start_tello w katalaogu vm_scripts
+1. Uruchomić skrypty start_tello w katalaogu vm_scripts
 2. Włączyć G2RR poleceniem ```ros2 run pkg_g2rr g2rr tello_1 ```
 3. Uruchomić launcha wchodząc w folder ```tello_controller/launch``` a następnie ```ros2 launch <nazwa launcha>```
 
@@ -47,6 +47,7 @@ Do uruchomienie symulacji należy:
 
 ![Drone_goes_BRRRRRR](https://user-images.githubusercontent.com/80836780/214315608-816f0503-9ed1-4b3c-9d14-6c07749dff2d.gif)
 
+Implementacja sterowania dwoma dronami musiała korzystać bezpośrednio z danych pobieranych z kamery ze względu na problemy śledzenia pozycji dwóch jednostek.
 ![2_Drones_goes_BRR](https://user-images.githubusercontent.com/80836780/214315813-814aed4c-c7f6-4f30-9831-48c51d6bbd7b.gif)
 
 ![Drone_goes_BRRRRRRRR](https://user-images.githubusercontent.com/80836780/214401901-26fb3bcc-a1d2-4f25-a639-aa4947aff163.gif)
